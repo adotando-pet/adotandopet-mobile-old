@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Text, Image, StyleSheet, Dimensions, ImageBackground, StatusBar,
 } from 'react-native';
+
+import TabBarIcon from '~/components/TabBarIcon';
 
 const styles = StyleSheet.create({
   container: {
@@ -55,5 +58,36 @@ const Favorites = () => (
     <Text style={[styles.instructions, styles.fileName]}>src/pages/Favorites/index.js</Text>
   </ImageBackground>
 );
+
+const TabIcon = ({ tintColor, focused }) => (
+  <TabBarIcon name="ios-heart" focused={focused} color={tintColor} />
+);
+TabIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+  focused: PropTypes.bool.isRequired,
+};
+
+const DrawerIcon = ({ tintColor, focused }) => (
+  <TabBarIcon name="md-heart" focused={focused} color={tintColor} />
+);
+DrawerIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+  focused: PropTypes.bool.isRequired,
+};
+
+Favorites.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarLabel: 'Favoritos',
+    tabBarIcon: TabIcon,
+    tabBarVisible,
+    drawerLabel: 'Favoritos',
+    drawerIcon: DrawerIcon,
+  };
+};
 
 export default Favorites;
