@@ -12,7 +12,7 @@ const RootSwitch = createSwitchNavigator(
     MainNavigator,
   },
   {
-    initialRouteName: 'MainNavigator',
+    initialRouteName: 'AuthSwitch',
   },
 );
 

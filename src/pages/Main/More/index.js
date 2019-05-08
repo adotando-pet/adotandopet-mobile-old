@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Text, Image, StyleSheet, Dimensions, ImageBackground, StatusBar,
 } from 'react-native';
+
+import TabBarIcon from '~/components/TabBarIcon';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,7 +36,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Main = () => (
+const More = () => (
   <ImageBackground
     source={{
       uri: 'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/background.png',
@@ -52,8 +55,43 @@ const Main = () => (
     <Text style={styles.welcome}>Bem-vindo ao Template Avançado!</Text>
     <Text style={styles.instructions}>Essa é a tela principal da sua aplicação =)</Text>
     <Text style={styles.instructions}>Você pode editar a tela no arquivo:</Text>
-    <Text style={[styles.instructions, styles.fileName]}>src/pages/Main/index.js</Text>
+    <Text style={[styles.instructions, styles.fileName]}>src/pages/More/index.js</Text>
   </ImageBackground>
 );
 
-export default Main;
+const TabIcon = ({ tintColor, focused }) => (
+  <TabBarIcon name="ios-more" focused={focused} color={tintColor} />
+);
+TabIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+  focused: PropTypes.bool.isRequired,
+};
+
+const DrawerIcon = ({ tintColor, focused }) => (
+  <TabBarIcon name="md-more" focused={focused} color={tintColor} />
+);
+DrawerIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+  focused: PropTypes.bool.isRequired,
+};
+
+More.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+
+  let drawerLockMode = 'unlocked';
+  if (navigation.state.index > 0) drawerLockMode = 'locked-closed';
+
+  return {
+    tabBarLabel: 'Mais',
+    tabBarIcon: TabIcon,
+    tabBarVisible,
+    drawerLockMode,
+    drawerLabel: 'Mais',
+    drawerIcon: DrawerIcon,
+  };
+};
+
+export default More;

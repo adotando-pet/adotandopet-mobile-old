@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Text, Image, StyleSheet, Dimensions, ImageBackground, StatusBar,
 } from 'react-native';
+
+import TabBarIcon from '~/components/TabBarIcon';
 
 const styles = StyleSheet.create({
   container: {
@@ -55,5 +58,36 @@ const Adoptions = () => (
     <Text style={[styles.instructions, styles.fileName]}>src/pages/Adoptions/index.js</Text>
   </ImageBackground>
 );
+
+const TabIcon = ({ tintColor, focused }) => (
+  <TabBarIcon name="ios-paw" focused={focused} color={tintColor} />
+);
+TabIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+  focused: PropTypes.bool.isRequired,
+};
+
+const DrawerIcon = ({ tintColor, focused }) => (
+  <TabBarIcon name="md-paw" focused={focused} color={tintColor} />
+);
+DrawerIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+  focused: PropTypes.bool.isRequired,
+};
+
+Adoptions.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarLabel: 'Adoções',
+    tabBarIcon: TabIcon,
+    tabBarVisible,
+    drawerLabel: 'Adoções',
+    drawerIcon: DrawerIcon,
+  };
+};
 
 export default Adoptions;

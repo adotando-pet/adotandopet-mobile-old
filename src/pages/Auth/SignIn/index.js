@@ -1,59 +1,94 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { StatusBar } from 'react-native';
+
+import FloatLabelInput from '~/components/FloatLabelInput';
+import NativeButton from '~/components/NativeButton';
+
+import logo from '~/assets/images/signin_logo.png';
 
 import {
-  Text, Image, StyleSheet, Dimensions, ImageBackground, StatusBar,
-} from 'react-native';
+  Container,
+  ContentContainer,
+  Logo,
+  ForgotPasswordLink,
+  ForgotPasswordText,
+  TermsLink,
+  TermsLinkText,
+  SignupLinkContainer,
+  SignupLinkContent,
+  SignupLinkText,
+} from './styles';
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    paddingHorizontal: 20,
-  },
-  fileName: {
-    fontWeight: 'bold',
-    marginTop: 5,
-  },
-  instructions: {
-    color: '#DDD',
-    fontSize: 14,
-    marginTop: 20,
-    textAlign: 'center',
-  },
-  logo: {
-    height: Dimensions.get('window').height * 0.11,
-    marginVertical: Dimensions.get('window').height * 0.11,
-    width: Dimensions.get('window').height * 0.11 * (1950 / 662),
-  },
-  welcome: {
-    color: '#fff',
-    fontSize: 22,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+export default class SignIn extends Component {
+  static navigationOptions = {
+    header: null,
+  };
 
-const SignIn = () => (
-  <ImageBackground
-    source={{
-      uri: 'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/background.png',
-    }}
-    style={styles.container}
-    resizeMode="cover"
-  >
-    <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-    <Image
-      source={{
-        uri: 'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/rocketseat_logo.png',
-      }}
-      style={styles.logo}
-      resizeMode="contain"
-    />
-    <Text style={styles.welcome}>Bem-vindo ao Template Avançado!</Text>
-    <Text style={styles.instructions}>Essa é a tela principal da sua aplicação =)</Text>
-    <Text style={styles.instructions}>Você pode editar a tela no arquivo:</Text>
-    <Text style={[styles.instructions, styles.fileName]}>src/pages/SignIn/index.js</Text>
-  </ImageBackground>
-);
+  static propTypes = {
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func,
+    }).isRequired,
+  };
 
-export default SignIn;
+  state = {
+    email: '',
+    password: '',
+  };
+
+  handleInputChange = (id, value) => {
+    console.tron.log(id, value);
+    this.setState({ [id]: value });
+  };
+
+  handleNavigate = (route) => {
+    const { navigation } = this.props;
+    navigation.navigate(route);
+  };
+
+  setLastInputRef = ref => (this.passwordInput = ref);
+
+  render() {
+    const { email, password } = this.state;
+    return (
+      <Container>
+        <StatusBar barStyle="light-content" />
+        <ContentContainer>
+          <Logo source={logo} />
+          <FloatLabelInput
+            id="email"
+            label="Email"
+            value={email}
+            onChangeText={this.handleInputChange}
+            onSubmitEditing={() => this.passwordInput.focus()}
+            returnKeyType="next"
+            keyboardType="email-address"
+          />
+          <FloatLabelInput
+            id="password"
+            setRef={this.setLastInputRef}
+            label="Password"
+            value={password}
+            onChangeText={this.handleInputChange}
+            returnKeyType="send"
+            onSubmitEditing={() => this.handleNavigate('Announce')}
+            secureTextEntry
+          />
+          <ForgotPasswordLink onPress={() => this.handleNavigate('ForgotPassword')}>
+            <ForgotPasswordText>Esqueceu sua senha?</ForgotPasswordText>
+          </ForgotPasswordLink>
+          <NativeButton onPress={() => this.handleNavigate('Announce')} value="Entrar" />
+          <SignupLinkContainer onPress={() => this.handleNavigate('SignUp')}>
+            <SignupLinkContent>
+              <SignupLinkText>Ainda não tem conta?</SignupLinkText>
+              <SignupLinkText featured>Cadastre-se!</SignupLinkText>
+            </SignupLinkContent>
+          </SignupLinkContainer>
+        </ContentContainer>
+        <TermsLink>
+          <TermsLinkText>Privacy & Terms</TermsLinkText>
+        </TermsLink>
+      </Container>
+    );
+  }
+}
