@@ -1,9 +1,14 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { StatusBar } from 'react-native';
+
+import { Container, ContentContainer } from './styles';
 
 const ForgotPassword = () => (
-  <Container />
+  <Container>
+    <StatusBar barStyle="light-content" />
+    <ContentContainer />
+  </Container>
 );
 
 export default ForgotPassword;

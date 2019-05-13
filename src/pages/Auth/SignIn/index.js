@@ -37,7 +37,6 @@ export default class SignIn extends Component {
   };
 
   handleInputChange = (id, value) => {
-    console.tron.log(id, value);
     this.setState({ [id]: value });
   };
 
