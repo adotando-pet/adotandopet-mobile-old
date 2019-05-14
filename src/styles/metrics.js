@@ -1,5 +1,7 @@
 import { Dimensions, Platform } from 'react-native';
 
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+
 const { width, height } = Dimensions.get('window');
 
 export default {
@@ -8,5 +10,5 @@ export default {
   baseRadius: 5,
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,
-  headerMargin: Platform.OS === 'ios' ? 20 : 0,
+  headerMargin: getStatusBarHeight(),
 };

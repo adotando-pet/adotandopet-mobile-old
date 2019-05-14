@@ -6,17 +6,19 @@ import { metrics, colors } from '~/styles';
 
 export const Container = styled(Animated.View)`
   align-self: stretch;
-  margin: ${metrics.baseMargin}px ${metrics.baseMargin * 4}px;
   padding-top: 20;
   border-bottom-color: ${colors.white};
+  margin-bottom: ${metrics.baseMargin}px;
 `;
 
 export const Label = styled(Animated.Text)`
   position: absolute;
 `;
 
-export const Input = styled.TextInput`
+export const Input = styled.TextInput.attrs({})`
   height: 26px;
   font-size: 20;
   color: ${colors.primary};
+  padding: 0;
+  margin: 0;
 `;

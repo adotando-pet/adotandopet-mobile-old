@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import { Platform } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
+import Touchable from 'react-native-platform-touchable';
 
 import { colors, metrics, fonts } from '~/styles';
 
@@ -18,6 +19,7 @@ export const ContentContainer = styled.KeyboardAvoidingView.attrs({
   flex: 1;
   align-items: center;
   justify-content: center;
+  padding: 0 ${metrics.basePadding}px;
 `;
 
 export const Logo = styled.Image.attrs({
@@ -30,8 +32,9 @@ export const Logo = styled.Image.attrs({
 
 export const ForgotPasswordLink = styled.TouchableOpacity`
   align-self: flex-end;
-  padding: ${metrics.basePadding / 4}px ${metrics.basePadding / 2}px;
-  margin: ${metrics.baseMargin}px ${metrics.baseMargin * 4}px;
+  margin-top: ${metrics.baseMargin}px;
+  margin-bottom: ${metrics.baseMargin * 2}px;
+  padding-left: ${metrics.basePadding / 2};
 `;
 
 export const ForgotPasswordText = styled.Text`
@@ -56,7 +59,7 @@ export const SignupLinkText = styled.Text`
   font-weight: ${props => (props.featured ? 'bold' : 'normal')};
 `;
 
-export const TermsLink = styled.TouchableOpacity`
+export const TermsLink = styled(Touchable)`
   margin-bottom: ${metrics.baseMargin * 3}px;
   align-self: center;
   padding: ${metrics.basePadding / 2}px ${metrics.basePadding}px;

@@ -1,11 +1,15 @@
 import styled from 'styled-components/native';
 
-import { colors, metrics } from '~/styles';
+import Touchable from 'react-native-platform-touchable';
 
-export const ButtonContainer = styled.TouchableOpacity`
+import { colors, metrics, fonts } from '~/styles';
+
+export const ButtonContainer = styled(Touchable).attrs({
+  background: Touchable.Ripple(colors.secundary),
+})`
   align-self: stretch;
   background-color: ${colors.buttonPrimary};
-  margin: 0 ${metrics.baseMargin * 4}px;
+  margin-bottom: ${metrics.baseMargin * 4}px;
   border-radius: ${metrics.baseRadius};
   padding: ${metrics.basePadding / 2}px 0;
   align-items: center;
@@ -14,4 +18,5 @@ export const ButtonContainer = styled.TouchableOpacity`
 export const ButtonText = styled.Text`
   font-weight: bold;
   color: ${colors.white};
+  font-size: ${fonts.big};
 `;

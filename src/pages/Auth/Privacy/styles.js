@@ -20,7 +20,6 @@ export const ContentContainer = styled.KeyboardAvoidingView.attrs({
   margin-top: ${metrics.headerMargin}px;
   flex: 1;
   align-items: center;
-  justify-content: center;
   padding: ${metrics.basePadding}px;
 `;
 
@@ -42,16 +41,21 @@ export const BackIcon = styled(Icon).attrs({
 `;
 
 export const Title = styled.Text`
+  margin-top: ${metrics.baseMargin * 2};
   font-size: ${fonts.big * 2};
   font-weight: bold;
   text-align: center;
   color: ${colors.white};
-  margin-bottom: ${metrics.baseMargin * 4};
+  margin-bottom: ${metrics.baseMargin};
 `;
 
-export const Description = styled.Text`
+export const DescriptionContainer = styled.ScrollView`
+  flex: 1;
+`;
+
+export const DescriptionText = styled.Text`
   font-size: ${fonts.medium};
   color: ${colors.white};
-  text-align: center;
-  margin-bottom: ${metrics.baseMargin * 2};
+  text-align: justify;
+  margin: ${metrics.baseMargin}px 0;
 `;

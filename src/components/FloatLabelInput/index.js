@@ -8,9 +8,9 @@ import { Container, Label, Input } from './styles';
 
 export default class FloatLabelInput extends Component {
   static propTypes = {
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    onChangeText: PropTypes.func.isRequired,
+    label: PropTypes.string,
+    value: PropTypes.string,
+    onChangeText: PropTypes.func,
     setRef: PropTypes.func,
     id: PropTypes.string,
   };
@@ -18,6 +18,9 @@ export default class FloatLabelInput extends Component {
   static defaultProps = {
     setRef: () => {},
     id: '',
+    value: '',
+    onChangeText: () => {},
+    label: 'example',
   };
 
   state = {
