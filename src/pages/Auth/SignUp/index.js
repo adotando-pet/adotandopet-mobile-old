@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 import { StatusBar } from 'react-native';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import AuthActions from '~/store/ducks/auth';
+
 import NativeButton from '~/components/NativeButton';
 
 import {
@@ -20,7 +24,7 @@ import {
   SigninLinkText,
 } from './styles';
 
-export default class SignUp extends Component {
+class SignUp extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
       navigate: PropTypes.func,
@@ -51,10 +55,13 @@ export default class SignUp extends Component {
             <FormInput placeholder="Insira aqui sua Senha" secureTextEntry />
             <FormLabel>Confirmação de Senha</FormLabel>
             <FormInput placeholder="Insira sua Senha novamente" secureTextEntry />
-          <FormNotificationContainer>
-            <FormNotificationText>Gostaria de receber notificações para ficar por dentro das novidades e acontecimentos da plataforma?</FormNotificationText>
-            <FormNotificationSwitch />
-          </FormNotificationContainer>
+            <FormNotificationContainer>
+              <FormNotificationText>
+                Gostaria de receber notificações para ficar por dentro das novidades e
+                acontecimentos da plataforma?
+              </FormNotificationText>
+              <FormNotificationSwitch />
+            </FormNotificationContainer>
           </FormContainer>
           <NativeButton onPress={() => this.handleNavigate('SignIn')} value="Cadastrar" />
           <SigninLinkContainer onPress={() => this.handleNavigate('SignIn')}>
@@ -68,3 +75,14 @@ export default class SignUp extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SignUp);

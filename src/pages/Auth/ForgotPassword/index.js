@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 import { StatusBar } from 'react-native';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import AuthActions from '~/store/ducks/auth';
+
 import FloatLabelInput from '~/components/FloatLabelInput';
 import NativeButton from '~/components/NativeButton';
 
@@ -15,7 +19,7 @@ import {
   Description,
 } from './styles';
 
-export default class ForgotPassword extends Component {
+class ForgotPassword extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
       goBack: PropTypes.func,
@@ -67,3 +71,14 @@ export default class ForgotPassword extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ForgotPassword);

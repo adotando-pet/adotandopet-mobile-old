@@ -5,6 +5,10 @@ import { StatusBar } from 'react-native';
 import FloatLabelInput from '~/components/FloatLabelInput';
 import NativeButton from '~/components/NativeButton';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import AuthActions from '~/store/ducks/auth';
+
 import logo from '~/assets/images/signin_logo.png';
 
 import {
@@ -20,7 +24,7 @@ import {
   SignupLinkText,
 } from './styles';
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   static navigationOptions = {
     header: null,
   };
@@ -91,3 +95,12 @@ export default class SignIn extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(AuthActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
