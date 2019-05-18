@@ -1,14 +1,84 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { StatusBar } from 'react-native';
 
-import { Container, ContentContainer } from './styles';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import AuthActions from '~/store/ducks/auth';
 
-const ForgotPassword = () => (
-  <Container>
-    <StatusBar barStyle="light-content" />
-    <ContentContainer />
-  </Container>
-);
+import FloatLabelInput from '~/components/FloatLabelInput';
+import NativeButton from '~/components/NativeButton';
 
-export default ForgotPassword;
+import {
+  Container,
+  ContentContainer,
+  BackIconContainer,
+  BackIcon,
+  Title,
+  Description,
+} from './styles';
+
+class ForgotPassword extends Component {
+  static propTypes = {
+    navigation: PropTypes.shape({
+      goBack: PropTypes.func,
+    }).isRequired,
+  };
+
+  state = {
+    email: '',
+  };
+
+  handleNavigate = (route) => {
+    const { navigation } = this.props;
+
+    navigation.navigate(route);
+  };
+
+  handleInputChange = (id, value) => {
+    this.setState({ [id]: value });
+  };
+
+  render() {
+    const { email } = this.state;
+    const {
+      navigation: { goBack },
+    } = this.props;
+    return (
+      <Container>
+        <StatusBar barStyle="light-content" />
+        <ContentContainer>
+          <BackIconContainer onPress={() => goBack()}>
+            <BackIcon />
+          </BackIconContainer>
+          <Title>Esqueceu sua senha?</Title>
+          <Description>
+            Insira seu email para te enviarmos as instruções para recuperação de senha!
+          </Description>
+          <FloatLabelInput
+            id="email"
+            label="Email"
+            value={email}
+            onChangeText={this.handleInputChange}
+            returnKeyType="send"
+            onSubmitEditing={() => this.handleNavigate('SignIn')}
+            keyboardType="email-address"
+          />
+          <NativeButton onPress={() => this.handleNavigate('SignIn')} value="Enviar" />
+        </ContentContainer>
+      </Container>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ForgotPassword);

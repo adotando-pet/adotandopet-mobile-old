@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
 
-const reducers = combineReducers({
-  // Remova essa linha depois de adicionar seus ducks
-  example: () => [],
-});
+import { reducer as auth } from './auth';
 
-export default reducers;
+export default combineReducers({
+  auth,
+});

@@ -5975,6 +5975,11 @@ react-native-linear-gradient@^2.5.4:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.4.tgz#dce133526f5a5510a639af94544f1ed0c984bd1e"
   integrity sha512-FF1NhlerA4uBiS0gFIHa4FBp8/aftv4vPj14Y47lGNkYjSI94tnI6oYO3EfUxXjEyCUPiOVNKZOB9kScyjc5Ew==
 
+react-native-platform-touchable@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-platform-touchable/-/react-native-platform-touchable-1.1.1.tgz#fde4acc65eea585d28b164d0c3716a42129a68e4"
+  integrity sha1-/eSsxl7qWF0osWTQw3FqQhKaaOQ=
+
 react-native-safe-area-view@^0.13.0:
   version "0.13.1"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.13.1.tgz#834bbb6d22f76a7ff07de56725ee5667ba1386b0"

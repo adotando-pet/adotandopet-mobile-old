@@ -10,8 +10,13 @@ const NativeButton = ({ value, onPress }) => (
 );
 
 NativeButton.propTypes = {
-  value: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  onPress: PropTypes.func,
+};
+
+NativeButton.defaultProps = {
+  value: 'Example',
+  onPress: () => {},
 };
 
 export default NativeButton;

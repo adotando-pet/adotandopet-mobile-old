@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 
 import { StatusBar } from 'react-native';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import AuthActions from '~/store/ducks/auth';
+
 import NativeButton from '~/components/NativeButton';
 
 import {
   Container,
   ContentContainer,
-  HeaderContainer,
-  HeaderTitle,
+  Title,
   FormContainer,
   FormLabel,
   FormInput,
@@ -21,7 +24,7 @@ import {
   SigninLinkText,
 } from './styles';
 
-export default class SignIn extends Component {
+class SignUp extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
       navigate: PropTypes.func,
@@ -40,6 +43,26 @@ export default class SignIn extends Component {
       <Container>
         <StatusBar barStyle="light-content" />
         <ContentContainer>
+          <Title>Cadastro</Title>
+          <FormContainer>
+            <FormLabel>Nome Completo</FormLabel>
+            <FormInput placeholder="Insira aqui seu Nome" />
+            <FormLabel>Telefone/Celular</FormLabel>
+            <FormInput placeholder="Insira aqui seu Telefone/Celular" />
+            <FormLabel>Email</FormLabel>
+            <FormInput placeholder="Insira aqui seu Email" />
+            <FormLabel>Senha</FormLabel>
+            <FormInput placeholder="Insira aqui sua Senha" secureTextEntry />
+            <FormLabel>Confirmação de Senha</FormLabel>
+            <FormInput placeholder="Insira sua Senha novamente" secureTextEntry />
+            <FormNotificationContainer>
+              <FormNotificationText>
+                Gostaria de receber notificações para ficar por dentro das novidades e
+                acontecimentos da plataforma?
+              </FormNotificationText>
+              <FormNotificationSwitch />
+            </FormNotificationContainer>
+          </FormContainer>
           <NativeButton onPress={() => this.handleNavigate('SignIn')} value="Cadastrar" />
           <SigninLinkContainer onPress={() => this.handleNavigate('SignIn')}>
             <SigninLinkContent>
@@ -52,3 +75,14 @@ export default class SignIn extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SignUp);

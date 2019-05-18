@@ -5,6 +5,10 @@ import { StatusBar } from 'react-native';
 import FloatLabelInput from '~/components/FloatLabelInput';
 import NativeButton from '~/components/NativeButton';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import AuthActions from '~/store/ducks/auth';
+
 import logo from '~/assets/images/signin_logo.png';
 
 import {
@@ -20,7 +24,7 @@ import {
   SignupLinkText,
 } from './styles';
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   static navigationOptions = {
     header: null,
   };
@@ -32,8 +36,8 @@ export default class SignIn extends Component {
   };
 
   state = {
-    email: '',
-    password: '',
+    email: 'a@b.com',
+    password: '123123',
   };
 
   handleInputChange = (id, value) => {
@@ -66,7 +70,7 @@ export default class SignIn extends Component {
           <FloatLabelInput
             id="password"
             setRef={this.setLastInputRef}
-            label="Password"
+            label="Senha"
             value={password}
             onChangeText={this.handleInputChange}
             returnKeyType="send"
@@ -84,10 +88,19 @@ export default class SignIn extends Component {
             </SignupLinkContent>
           </SignupLinkContainer>
         </ContentContainer>
-        <TermsLink>
-          <TermsLinkText>Privacy & Terms</TermsLinkText>
+        <TermsLink onPress={() => this.handleNavigate('Privacy')}>
+          <TermsLinkText>Privacidade & Termos de Uso</TermsLinkText>
         </TermsLink>
       </Container>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(AuthActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

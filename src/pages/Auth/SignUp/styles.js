@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import { Platform } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
+import Touchable from 'react-native-platform-touchable';
 
 import { colors, metrics, fonts } from '~/styles';
 
@@ -16,34 +17,61 @@ export const ContentContainer = styled.KeyboardAvoidingView.attrs({
   behavior: Platform.OS === 'ios' ? 'padding' : null,
 })`
   flex: 1;
-  align-items: center;
   justify-content: center;
+  padding: 0 ${metrics.basePadding}px;
 `;
 
-export const HeaderContainer = styled.View``;
-
-export const HeaderTitle = styled.Text``;
-
-export const FormContainer = styled.View``;
-
-export const FormLabel = styled.Text``;
-
-export const FormInput = styled.TextInput``;
-
-export const FormNotificationContainer = styled.View``;
-
-export const FormNotificationText = styled.Text``;
-
-export const FormNotificationSwitch = styled.Switch``;
-
-export const SigninLinkContainer = styled.TouchableWithoutFeedback`
-  align-self: center;
+export const Title = styled.Text`
+  font-size: ${fonts.big * 2};
+  font-weight: bold;
+  color: ${colors.white};
+  margin-bottom: ${metrics.baseMargin * 2};
+  text-align: center;
 `;
+
+export const FormContainer = styled.View`
+  padding: ${metrics.basePadding}px;
+  background-color: ${colors.white};
+  border-radius: ${metrics.baseRadius};
+  margin-bottom: ${metrics.baseMargin * 2};
+`;
+
+export const FormLabel = styled.Text`
+  font-size: ${fonts.small};
+  color: ${colors.black};
+  margin-bottom: ${metrics.baseMargin / 2};
+`;
+
+export const FormInput = styled.TextInput`
+  font-size: ${fonts.medium};
+  padding: ${metrics.basePadding / 2}px 0;
+  margin-bottom: ${metrics.baseMargin};
+  color: ${colors.secundary};
+`;
+
+export const FormNotificationContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const FormNotificationText = styled.Text`
+  flex: 1;
+  font-size: ${fonts.small};
+`;
+
+export const FormNotificationSwitch = styled.Switch`
+  margin-left: ${metrics.baseMargin};
+`;
+
+export const SigninLinkContainer = styled(Touchable).attrs({
+  background: Touchable.Ripple(colors.secundary),
+})``;
 
 export const SigninLinkContent = styled.View`
   padding: ${metrics.basePadding / 2}px ${metrics.basePadding}px;
   flex-direction: row;
   margin-top: 15px;
+  justify-content: center;
 `;
 
 export const SigninLinkText = styled.Text`
