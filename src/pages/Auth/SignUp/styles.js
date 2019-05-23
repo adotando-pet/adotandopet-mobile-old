@@ -49,20 +49,6 @@ export const FormInput = styled.TextInput`
   color: ${colors.secundary};
 `;
 
-export const FormNotificationContainer = styled.View`
-  flex-direction: row;
-  align-items: center;
-`;
-
-export const FormNotificationText = styled.Text`
-  flex: 1;
-  font-size: ${fonts.small};
-`;
-
-export const FormNotificationSwitch = styled.Switch`
-  margin-left: ${metrics.baseMargin};
-`;
-
 export const SigninLinkContainer = styled(Touchable).attrs({
   background: Touchable.Ripple(colors.secundary),
 })``;

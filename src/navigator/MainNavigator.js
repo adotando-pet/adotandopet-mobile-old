@@ -1,5 +1,4 @@
-import { Platform } from 'react-native';
-import { createBottomTabNavigator, createDrawerNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation';
 
 import Favorites from '~/pages/Main/Favorites';
 import Adoptions from '~/pages/Main/Adoptions';
@@ -22,23 +21,20 @@ const settings = {
   initialRouteName: 'HomeStack',
 };
 
-const MainNavigator = Platform.select({
-  ios: createBottomTabNavigator(routes, {
-    tabBarOptions: {
-      activeTintColor: colors.white,
-      inactiveTintColor: colors.mediumWhiteTransparent,
-      style: {
-        height: 70,
-        backgroundColor: colors.primary,
-        borderTopWidth: 0,
-      },
-      labelStyle: {
-        fontSize: fonts.small,
-      },
+const MainNavigator = createBottomTabNavigator(routes, {
+  tabBarOptions: {
+    activeTintColor: colors.white,
+    inactiveTintColor: colors.mediumWhiteTransparent,
+    style: {
+      height: 70,
+      backgroundColor: colors.primary,
+      borderTopWidth: 0,
     },
-    ...settings,
-  }),
-  android: createDrawerNavigator(routes, settings),
+    labelStyle: {
+      fontSize: fonts.small,
+    },
+  },
+  ...settings,
 });
 
 export default MainNavigator;

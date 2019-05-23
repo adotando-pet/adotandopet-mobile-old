@@ -16,9 +16,6 @@ import {
   FormContainer,
   FormLabel,
   FormInput,
-  FormNotificationContainer,
-  FormNotificationText,
-  FormNotificationSwitch,
   SigninLinkContainer,
   SigninLinkContent,
   SigninLinkText,
@@ -47,21 +44,12 @@ class SignUp extends Component {
           <FormContainer>
             <FormLabel>Nome Completo</FormLabel>
             <FormInput placeholder="Insira aqui seu Nome" />
-            <FormLabel>Telefone/Celular</FormLabel>
-            <FormInput placeholder="Insira aqui seu Telefone/Celular" />
             <FormLabel>Email</FormLabel>
             <FormInput placeholder="Insira aqui seu Email" />
             <FormLabel>Senha</FormLabel>
             <FormInput placeholder="Insira aqui sua Senha" secureTextEntry />
             <FormLabel>Confirmação de Senha</FormLabel>
             <FormInput placeholder="Insira sua Senha novamente" secureTextEntry />
-            <FormNotificationContainer>
-              <FormNotificationText>
-                Gostaria de receber notificações para ficar por dentro das novidades e
-                acontecimentos da plataforma?
-              </FormNotificationText>
-              <FormNotificationSwitch />
-            </FormNotificationContainer>
           </FormContainer>
           <NativeButton onPress={() => this.handleNavigate('SignIn')} value="Cadastrar" />
           <SigninLinkContainer onPress={() => this.handleNavigate('SignIn')}>
