@@ -19,21 +19,29 @@ import {
   CastredDescription,
   Vascinated,
   VascinatedDescription,
+  Special,
+  SpecialDescription,
+  SpecialContent,
+  SpecialText,
+  Lives,
+  LivesDescription,
+  Sociable,
+  SociableDescription,
 } from './styles';
 
 const Details = () => (
   <Container>
     <Card>
       <TitleContainer>
-        <Image source={logo} />
-          <NameContainer>
-            <NameText>Scooby Doo</NameText>
-            <NameDescription>Pug, small</NameDescription>
-          </NameContainer>
+        <Image />
+        <NameContainer>
+          <NameText>Scooby Doo</NameText>
+          <NameDescription>Pug, small</NameDescription>
+        </NameContainer>
       </TitleContainer>
       <Address>
         <CepDescription>03047-000</CepDescription>
-        <AddressDescription>Rua 21 de Abril, Brás</AdressDescription>
+        <AddressDescription>Rua 21 de Abril, Brás</AddressDescription>
       </Address>
       <AnimalInformation>
         <Shared>
@@ -48,6 +56,21 @@ const Details = () => (
           <VascinatedDescription>Vascinated</VascinatedDescription>
           <Icon />
         </Vascinated>
+        <Special>
+          <SpecialContent>
+            <SpecialDescription>Special cares</SpecialDescription>
+            <Icon />
+          </SpecialContent>
+          <SpecialText>N/A</SpecialText>
+        </Special>
+        <Lives>
+          <LivesDescription>Lives well</LivesDescription>
+          <Icon />
+        </Lives>
+        <Sociable>
+          <SociableDescription>Sociable</SociableDescription>
+          <Icon />
+        </Sociable>
       </AnimalInformation>
     </Card>
   </Container>
