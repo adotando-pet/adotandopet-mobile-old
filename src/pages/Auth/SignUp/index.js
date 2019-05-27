@@ -20,6 +20,7 @@ import {
   FormNotificationText,
   FormNotificationSwitch,
   Error,
+  FormInput,
   SigninLinkContainer,
   SigninLinkContent,
   SigninLinkText,
@@ -124,6 +125,7 @@ class SignUp extends Component {
               onSubmitEditing={() => this.emailInput.focus()}
               keyboardType="numeric"
             />
+            <FormInput placeholder="Insira aqui seu Nome" />
             <FormLabel>Email</FormLabel>
             <Input
               id="email"
@@ -167,6 +169,7 @@ class SignUp extends Component {
               <FormNotificationSwitch value={notifications} onValueChange={this.handleSwitch} />
             </FormNotificationContainer>
             {!!error && <Error>{error}</Error>}
+            <FormInput placeholder="Insira sua Senha novamente" secureTextEntry />
           </FormContainer>
           <NativeButton onPress={this.handleSignUp} value="Cadastrar" />
           <SigninLinkContainer onPress={() => this.handleNavigate('SignIn')}>
