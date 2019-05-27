@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import AuthActions from '~/store/ducks/auth';
 
 import NativeButton from '~/components/NativeButton';
+import Input from '~/components/Input';
 
 import {
   Container,
@@ -15,10 +16,10 @@ import {
   Title,
   FormContainer,
   FormLabel,
-  FormInput,
   FormNotificationContainer,
   FormNotificationText,
   FormNotificationSwitch,
+  Error,
   SigninLinkContainer,
   SigninLinkContent,
   SigninLinkText,
@@ -31,14 +32,70 @@ class SignUp extends Component {
     }).isRequired,
   };
 
-  state = {};
+  state = {
+    name: 'Claudio Orlandi',
+    phone: '123123',
+    email: 'a@b.com',
+    password: '123123',
+    passwordConfirmation: '123123',
+    error: '',
+    notifications: true,
+  };
 
   handleNavigate = (route) => {
     const { navigation } = this.props;
     navigation.navigate(route);
   };
 
+  handleSwitch = value => this.setState({ notifications: value });
+
+  handleInputChange = (id, value) => this.setState({ [id]: value, error: false });
+
+  handleSignUp = () => {
+    const {
+      loading,
+      name,
+      phone,
+      email,
+      password,
+      passwordConfirmation,
+      notifications,
+    } = this.state;
+    const { signupRequest } = this.props;
+
+    if (loading) return;
+
+    if (!name || !phone || !email || !password || !this.passwordConfirmationInput) {
+      this.setState({ error: 'Por favor, preencha todos os campos para continuar!' });
+    }
+
+    if (password !== passwordConfirmation) {
+      this.setState({ error: 'A senha e a confirmação não correspondem!' });
+    }
+
+    signupRequest({
+      name,
+      phone,
+      email,
+      password,
+      passwordConfirmation,
+      notifications,
+    });
+  };
+
+  setPhoneInputRef = ref => (this.phoneInput = ref);
+
+  setEmailInputRef = ref => (this.emailInput = ref);
+
+  setPasswordInputRef = ref => (this.passwordInput = ref);
+
+  setPasswordConfirmationInputRef = ref => (this.passwordConfirmationInput = ref);
+
   render() {
+    const {
+      notifications, name, phone, email, password, passwordConfirmation, error,
+    } = this.state;
+    const { loading } = this.props;
     return (
       <Container>
         <StatusBar barStyle="light-content" />
@@ -46,24 +103,72 @@ class SignUp extends Component {
           <Title>Cadastro</Title>
           <FormContainer>
             <FormLabel>Nome Completo</FormLabel>
-            <FormInput placeholder="Insira aqui seu Nome" />
+            <Input
+              id="name"
+              placeholder="Insira aqui seu Nome Completo"
+              autoCapitalize="words"
+              value={name}
+              onChangeText={this.handleInputChange}
+              returnKeyType="next"
+              onSubmitEditing={() => this.phoneInput.focus()}
+            />
             <FormLabel>Telefone/Celular</FormLabel>
-            <FormInput placeholder="Insira aqui seu Telefone/Celular" />
+            <Input
+              id="phone"
+              placeholder="Insira aqui seu Telefone/Celular"
+              autoCapitalize="none"
+              value={phone}
+              onChangeText={this.handleInputChange}
+              returnKeyType="next"
+              setRef={this.setPhoneInputRef}
+              onSubmitEditing={() => this.emailInput.focus()}
+              keyboardType="numeric"
+            />
             <FormLabel>Email</FormLabel>
-            <FormInput placeholder="Insira aqui seu Email" />
+            <Input
+              id="email"
+              placeholder="Insira aqui seu Email"
+              autoCapitalize="none"
+              value={email}
+              onChangeText={this.handleInputChange}
+              returnKeyType="next"
+              setRef={this.setEmailInputRef}
+              onSubmitEditing={() => this.passwordInput.focus()}
+              keyboardType="email-address"
+            />
             <FormLabel>Senha</FormLabel>
-            <FormInput placeholder="Insira aqui sua Senha" secureTextEntry />
+            <Input
+              id="password"
+              placeholder="Insira aqui sua Senha"
+              autoCapitalize="none"
+              value={password}
+              onChangeText={this.handleInputChange}
+              returnKeyType="next"
+              setRef={this.setPasswordInputRef}
+              onSubmitEditing={() => this.passwordConfirmationInput.focus()}
+              secureTextEntry
+            />
             <FormLabel>Confirmação de Senha</FormLabel>
-            <FormInput placeholder="Insira sua Senha novamente" secureTextEntry />
+            <Input
+              id="passwordConfirmation"
+              placeholder="Insira novamente sua Senha"
+              autoCapitalize="none"
+              value={passwordConfirmation}
+              onChangeText={this.handleInputChange}
+              returnKeyType="send"
+              setRef={this.setPasswordConfirmationInputRef}
+              onSubmitEditing={this.handleSignUp}
+              secureTextEntry
+            />
             <FormNotificationContainer>
               <FormNotificationText>
-                Gostaria de receber notificações para ficar por dentro das novidades e
-                acontecimentos da plataforma?
+                Gostaria de receber notificações para ficar por dentro das novidades?
               </FormNotificationText>
-              <FormNotificationSwitch />
+              <FormNotificationSwitch value={notifications} onValueChange={this.handleSwitch} />
             </FormNotificationContainer>
+            {!!error && <Error>{error}</Error>}
           </FormContainer>
-          <NativeButton onPress={() => this.handleNavigate('SignIn')} value="Cadastrar" />
+          <NativeButton onPress={this.handleSignUp} value="Cadastrar" />
           <SigninLinkContainer onPress={() => this.handleNavigate('SignIn')}>
             <SigninLinkContent>
               <SigninLinkText>Já tem conta?</SigninLinkText>
