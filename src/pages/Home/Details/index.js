@@ -29,10 +29,17 @@ import {
   LivesDescription,
   Sociable,
   SociableDescription,
+  BackIconContainer,
+  BackIcon,
+  Title,
 } from './styles';
 
-const Details = () => (
+const Details = ({ navigation }) => (
   <Container>
+    <BackIconContainer onPress={() => navigation.goBack()}>
+      <BackIcon />
+    </BackIconContainer>
+    <Title>Detalhes</Title>
     <Card>
       <TitleContainer>
         <Image source={logo} />

@@ -1,6 +1,35 @@
 import styled from 'styled-components/native';
 
+import { Platform } from 'react-native';
+
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import { colors, metrics, fonts } from '~/styles';
+
+export const BackIconContainer = styled.TouchableOpacity`
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: ${metrics.basePadding / 4}px ${metrics.basePadding / 2}px;
+`;
+
+export const BackIcon = styled(Icon).attrs({
+  name: Platform.select({
+    android: 'md-arrow-round-back',
+    ios: 'ios-arrow-round-back',
+  }),
+})`
+  color: ${colors.white};
+  font-size: ${fonts.big * 2};
+`;
+
+export const Title = styled.Text`
+  margin-top: ${metrics.baseMargin * 2};
+  font-size: ${fonts.big * 2};
+  font-weight: bold;
+  color: ${colors.white};
+  margin-bottom: ${metrics.baseMargin};
+`;
 
 export const Container = styled.View`
   flex: 1;
