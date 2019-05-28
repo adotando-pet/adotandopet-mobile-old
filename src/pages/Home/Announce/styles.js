@@ -30,11 +30,10 @@ export const Image = styled.Image.attrs({
   resize: 'cover',
 })`
   width: ${metrics.screenWidth * 0.2}px;
-  height: ${metrics.screenWidth * 0.2}px;
+  height: ${metrics.screenHeight * 0.2}px;
 `;
 
-export const NameContainer = styled.View`
-`;
+export const NameContainer = styled.View``;
 
 export const NameText = styled.Text`
   font-size: ${fonts.big};
