@@ -18,27 +18,30 @@ import {
   TagContainer,
   TagDescription,
   Description,
+  CardButton,
 } from './styles';
 
-const Announce = () => (
+const Announce = ({ navigation }) => (
   <Container>
     <StatusBar barStyle="light-content" />
     <SearchBar />
 
     <ContentContainer>
-      <CardContainer>
-        <TitleContainer>
-          <Image source={logo} />
-          <NameContainer>
-            <NameText>Scooby Doo</NameText>
-            <NameDescription>Pug, small</NameDescription>
-          </NameContainer>
-        </TitleContainer>
-        <TagContainer>
-          <TagDescription>Dócil</TagDescription>
-        </TagContainer>
-        <Description>No special cares.</Description>
-      </CardContainer>
+      <CardButton onPress={() => navigation.navigate('Details')}>
+        <CardContainer>
+          <TitleContainer>
+            <Image source={logo} />
+            <NameContainer>
+              <NameText>Scooby Doo</NameText>
+              <NameDescription>Pug, small</NameDescription>
+            </NameContainer>
+          </TitleContainer>
+          <TagContainer>
+            <TagDescription>Dócil</TagDescription>
+          </TagContainer>
+          <Description>No special cares.</Description>
+        </CardContainer>
+      </CardButton>
     </ContentContainer>
   </Container>
 );
