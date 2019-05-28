@@ -76,4 +76,8 @@ const Details = () => (
   </Container>
 );
 
+Details.navigationOptions = {
+  header: null,
+};
+
 export default Details;
