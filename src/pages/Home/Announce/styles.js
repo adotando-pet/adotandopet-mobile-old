@@ -11,6 +11,8 @@ export const ContentContainer = styled.View`
   padding: ${metrics.basePadding}px;
 `;
 
+export const CardButton = styled.TouchableOpacity``;
+
 export const CardContainer = styled.View`
   padding: ${metrics.basePadding}px;
   background: ${colors.white};
