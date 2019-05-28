@@ -4,9 +4,9 @@ import Immutable from 'seamless-immutable';
 /* Types & Action Creators */
 
 const { Types, Creators } = createActions({
-  signinRequest: null,
+  signinRequest: ['data'],
   signupRequest: ['data'],
-  forgotPasswordRequest: null,
+  forgotPasswordRequest: ['data'],
 
   signinSuccess: ['data'],
 
@@ -19,26 +19,25 @@ export default Creators;
 /* Initial State */
 
 export const INITIAL_STATE = Immutable({
+  data: [],
   token: '',
   loading: false,
 });
 
 /* Reducers to types */
-
-const request = state => state.merge({ loading: true });
-const failure = state => state.merge({ loading: false });
-
-const signInSuccess = (state, { token }) => state.merge({
-  token,
-  loading: false,
-});
-
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.SIGNIN_REQUEST]: request,
-  [Types.SIGNUP_REQUEST]: request,
-  [Types.FORGOT_PASSWORD_REQUEST]: request,
+  [Types.SIGNIN_REQUEST]: (state, { data }) => state.merge({ loading: true }),
+  [Types.SIGNUP_REQUEST]: (state, { data }) => state.merge({ loading: true }),
+  [Types.FORGOT_PASSWORD_REQUEST]: (state, { data }) => state.merge({ loading: true }),
 
-  [Types.SIGNIN_SUCCESS]: signInSuccess,
+  [Types.SIGNIN_SUCCESS]: (state, { data }) => {
+    console.tron.log('duck data', data);
+    return state.merge({
+      loading: false,
+      data: data.data,
+      token: data.token.token,
+    });
+  },
 
-  [Types.FAILURE]: failure,
+  [Types.FAILURE]: state => state.merge({ loading: false }),
 });

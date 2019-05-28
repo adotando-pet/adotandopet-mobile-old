@@ -5,8 +5,8 @@ import SignUp from '~/pages/Auth/SignUp';
 import SignInStack from './SignInStack';
 
 const AuthSwitch = createSwitchNavigator({
-  SignUp,
   SignInStack,
+  SignUp,
 });
 
 export default AuthSwitch;

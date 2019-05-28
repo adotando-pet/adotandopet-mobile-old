@@ -33,20 +33,32 @@ class SignIn extends Component {
     navigation: PropTypes.shape({
       navigate: PropTypes.func,
     }).isRequired,
+    signinRequest: PropTypes.func.isRequired,
   };
 
   state = {
     email: 'a@b.com',
     password: '123123',
+    loading: false,
+    error: '',
   };
 
   handleInputChange = (id, value) => {
     this.setState({ [id]: value });
   };
 
-  handleNavigate = (route) => {
-    const { navigation } = this.props;
-    navigation.navigate(route);
+  handleSignIn = () => {
+    const { loading, email, password } = this.state;
+
+    if (loading) return;
+
+    if (!email || !password) {
+      this.setState({ error: 'Por favor, preencha todos os campos para continuar!' });
+    }
+
+    const { signinRequest } = this.props;
+
+    signinRequest({ email, password });
   };
 
   setLastInputRef = ref => (this.passwordInput = ref);
@@ -74,13 +86,13 @@ class SignIn extends Component {
             value={password}
             onChangeText={this.handleInputChange}
             returnKeyType="send"
-            onSubmitEditing={() => this.handleNavigate('Announce')}
+            onSubmitEditing={this.handleSignIn}
             secureTextEntry
           />
           <ForgotPasswordLink onPress={() => this.handleNavigate('ForgotPassword')}>
             <ForgotPasswordText>Esqueceu sua senha?</ForgotPasswordText>
           </ForgotPasswordLink>
-          <NativeButton onPress={() => this.handleNavigate('Announce')} value="Entrar" />
+          <NativeButton onPress={this.handleSignIn} value="Entrar" />
           <SignupLinkContainer onPress={() => this.handleNavigate('SignUp')}>
             <SignupLinkContent>
               <SignupLinkText>Ainda não tem conta?</SignupLinkText>

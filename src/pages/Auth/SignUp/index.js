@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { StatusBar } from 'react-native';
+import RadioForm from 'react-native-simple-radio-button';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,7 +21,6 @@ import {
   FormNotificationText,
   FormNotificationSwitch,
   Error,
-  FormInput,
   SigninLinkContainer,
   SigninLinkContent,
   SigninLinkText,
@@ -31,11 +31,13 @@ class SignUp extends Component {
     navigation: PropTypes.shape({
       navigate: PropTypes.func,
     }).isRequired,
+    signupRequest: PropTypes.func.isRequired,
   };
 
   state = {
     name: 'Claudio Orlandi',
     phone: '123123',
+    gender: 'male',
     email: 'a@b.com',
     password: '123123',
     passwordConfirmation: '123123',
@@ -57,6 +59,7 @@ class SignUp extends Component {
       loading,
       name,
       phone,
+      gender,
       email,
       password,
       passwordConfirmation,
@@ -77,9 +80,10 @@ class SignUp extends Component {
     signupRequest({
       name,
       phone,
+      gender,
       email,
       password,
-      passwordConfirmation,
+      password_confirmation: passwordConfirmation,
       notifications,
     });
   };
@@ -94,9 +98,8 @@ class SignUp extends Component {
 
   render() {
     const {
-      notifications, name, phone, email, password, passwordConfirmation, error,
+      notifications, name, phone, gender, email, password, passwordConfirmation, error,
     } = this.state;
-    const { loading } = this.props;
     return (
       <Container>
         <StatusBar barStyle="light-content" />
@@ -125,7 +128,17 @@ class SignUp extends Component {
               onSubmitEditing={() => this.emailInput.focus()}
               keyboardType="numeric"
             />
-            <FormInput placeholder="Insira aqui seu Nome" />
+            <FormLabel>Gênero</FormLabel>
+            <RadioForm
+              radio_props={[
+                { label: 'Masculino', value: 'male' },
+                { label: 'Feminino', value: 'female' },
+              ]}
+              formHorizontal
+              animation
+              initial={gender}
+              onPress={gender => this.setState({ gender })}
+            />
             <FormLabel>Email</FormLabel>
             <Input
               id="email"
@@ -169,7 +182,6 @@ class SignUp extends Component {
               <FormNotificationSwitch value={notifications} onValueChange={this.handleSwitch} />
             </FormNotificationContainer>
             {!!error && <Error>{error}</Error>}
-            <FormInput placeholder="Insira sua Senha novamente" secureTextEntry />
           </FormContainer>
           <NativeButton onPress={this.handleSignUp} value="Cadastrar" />
           <SigninLinkContainer onPress={() => this.handleNavigate('SignIn')}>
