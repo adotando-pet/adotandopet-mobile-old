@@ -48,30 +48,30 @@ const Details = () => (
       <AnimalInformation>
         <Shared>
           <SharedDescription>Shared guard?</SharedDescription>
-          <Icon />
+          <Icon name="done" size={12} color="black" />
         </Shared>
         <Castred>
           <CastredDescription>Castred</CastredDescription>
-          <Icon />
+          <Icon name="done" size={12} color="black" />
         </Castred>
         <Vascinated>
           <VascinatedDescription>Vascinated</VascinatedDescription>
-          <Icon />
+          <Icon name="clear" size={12} color="black" />
         </Vascinated>
         <Special>
           <SpecialContent>
             <SpecialDescription>Special cares</SpecialDescription>
-            <Icon />
+            <Icon name="done" size={12} color="black" />
           </SpecialContent>
           <SpecialText>N/A</SpecialText>
         </Special>
         <Lives>
           <LivesDescription>Lives well</LivesDescription>
-          <Icon />
+          <Icon name="clear" size={10} color="black" />
         </Lives>
         <Sociable>
           <SociableDescription>Sociable</SociableDescription>
-          <Icon />
+          <Icon name="done" size={10} color="black" />
         </Sociable>
       </AnimalInformation>
     </Card>

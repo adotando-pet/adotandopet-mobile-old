@@ -30,11 +30,13 @@ export const Image = styled.Image.attrs({
 
 export const Address = styled.View`
   flex-direction: row;
-  
+  justify-content: flex-start;
+  padding-bottom: ${metrics.basePadding};
 `;
 
 export const CepDescription = styled.Text`
   font-size: ${fonts.medium};
+  margin-right: ${metrics.baseMargin};
 `;
 
 export const AddressDescription = styled.Text`
@@ -53,30 +55,51 @@ export const NameText = styled.Text`
 
 export const AnimalInformation = styled.View``;
 
-export const Shared = styled.View``;
+export const Shared = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
 export const SharedDescription = styled.Text``;
 
-export const Castred = styled.View``;
+export const Castred = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
 export const CastredDescription = styled.Text``;
 
-export const Vascinated = styled.View``;
+export const Vascinated = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
 export const VascinatedDescription = styled.Text``;
 
-export const Special = styled.View``;
+export const Special = styled.View`
+  flex-direction: column;
+  padding-bottom: ${metrics.basePadding};
+`;
 
-export const SpecialContent = styled.View``;
+export const SpecialContent = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
 export const SpecialDescription = styled.Text``;
 
 export const SpecialText = styled.Text``;
 
-export const Lives = styled.View``;
+export const Lives = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
 export const LivesDescription = styled.Text``;
 
-export const Sociable = styled.View``;
+export const Sociable = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
 export const SociableDescription = styled.Text``;
