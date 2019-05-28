@@ -1,6 +1,8 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import logo from '~/assets/images/signin_logo.png';
+
 import {
   Container,
   Card,
@@ -33,7 +35,7 @@ const Details = () => (
   <Container>
     <Card>
       <TitleContainer>
-        <Image />
+        <Image source={logo} />
         <NameContainer>
           <NameText>Scooby Doo</NameText>
           <NameDescription>Pug, small</NameDescription>
