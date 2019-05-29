@@ -26,7 +26,7 @@ export const Logo = styled.Image.attrs({
   resizeMode: 'cover',
 })`
   width: ${metrics.screenWidth * 0.4}px;
-  height: ${metrics.screenHeight * 0.4}px;
+  height: ${metrics.screenWidth * 0.4}px;
   margin-bottom: ${metrics.baseMargin * 5}px;
 `;
 
