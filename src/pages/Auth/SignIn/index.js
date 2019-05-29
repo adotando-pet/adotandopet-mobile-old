@@ -19,6 +19,7 @@ import {
   ForgotPasswordText,
   TermsLink,
   TermsLinkText,
+  Error,
   SignupLinkContainer,
   SignupLinkContent,
   SignupLinkText,
@@ -37,9 +38,8 @@ class SignIn extends Component {
   };
 
   state = {
-    email: 'a@b.com',
-    password: '123123',
-    loading: false,
+    email: '',
+    password: '',
     error: '',
   };
 
@@ -48,12 +48,11 @@ class SignIn extends Component {
   };
 
   handleSignIn = () => {
-    const { loading, email, password } = this.state;
-
-    if (loading) return;
+    const { email, password } = this.state;
 
     if (!email || !password) {
       this.setState({ error: 'Por favor, preencha todos os campos para continuar!' });
+      return;
     }
 
     const { signinRequest } = this.props;
@@ -64,7 +63,8 @@ class SignIn extends Component {
   setLastInputRef = ref => (this.passwordInput = ref);
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, error } = this.state;
+    const { auth: { loading }, navigation } = this.props;
     return (
       <Container>
         <StatusBar barStyle="light-content" />
@@ -89,18 +89,19 @@ class SignIn extends Component {
             onSubmitEditing={this.handleSignIn}
             secureTextEntry
           />
-          <ForgotPasswordLink onPress={() => this.handleNavigate('ForgotPassword')}>
+          <ForgotPasswordLink onPress={() => navigation.navigate('ForgotPassword')}>
             <ForgotPasswordText>Esqueceu sua senha?</ForgotPasswordText>
           </ForgotPasswordLink>
-          <NativeButton onPress={this.handleSignIn} value="Entrar" />
-          <SignupLinkContainer onPress={() => this.handleNavigate('SignUp')}>
+          { !!error && <Error>{error}</Error> }
+          <NativeButton onPress={this.handleSignIn} value="Entrar" loading={loading} />
+          <SignupLinkContainer onPress={() => navigation.navigate('SignUp')}>
             <SignupLinkContent>
               <SignupLinkText>Ainda não tem conta?</SignupLinkText>
               <SignupLinkText featured>Cadastre-se!</SignupLinkText>
             </SignupLinkContent>
           </SignupLinkContainer>
         </ContentContainer>
-        <TermsLink onPress={() => this.handleNavigate('Privacy')}>
+        <TermsLink onPress={() => navigation.navigate('Privacy')}>
           <TermsLinkText>Privacidade & Termos de Uso</TermsLinkText>
         </TermsLink>
       </Container>

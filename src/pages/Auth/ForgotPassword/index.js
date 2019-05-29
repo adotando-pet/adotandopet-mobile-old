@@ -17,6 +17,7 @@ import {
   BackIcon,
   Title,
   Description,
+  Error,
 } from './styles';
 
 class ForgotPassword extends Component {
@@ -28,22 +29,33 @@ class ForgotPassword extends Component {
 
   state = {
     email: '',
+    error: '',
   };
 
-  handleNavigate = (route) => {
-    const { navigation } = this.props;
+  handleSubmit = () => {
+    const {
+      email,
+    } = this.state;
 
-    navigation.navigate(route);
-  };
+    const { forgotPasswordRequest } = this.props;
+
+    if (!email) {
+      this.setState({ error: 'Por favor, preencha seu email para continuar!' });
+      return;
+    }
+
+    forgotPasswordRequest({ email });
+  }
 
   handleInputChange = (id, value) => {
     this.setState({ [id]: value });
   };
 
   render() {
-    const { email } = this.state;
+    const { email, error } = this.state;
     const {
       navigation: { goBack },
+      auth: { loading },
     } = this.props;
     return (
       <Container>
@@ -62,10 +74,11 @@ class ForgotPassword extends Component {
             value={email}
             onChangeText={this.handleInputChange}
             returnKeyType="send"
-            onSubmitEditing={() => this.handleNavigate('SignIn')}
+            onSubmitEditing={() => navigation.navigate('SignIn')}
             keyboardType="email-address"
           />
-          <NativeButton onPress={() => this.handleNavigate('SignIn')} value="Enviar" />
+          { !!error && <Error>{error}</Error> }
+          <NativeButton onPress={this.handleSubmit} value="Enviar" loading={loading} />
         </ContentContainer>
       </Container>
     );

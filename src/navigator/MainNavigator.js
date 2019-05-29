@@ -18,7 +18,7 @@ const routes = {
 };
 
 const settings = {
-  initialRouteName: 'HomeStack',
+  initialRouteName: 'More',
 };
 
 const MainNavigator = createBottomTabNavigator(routes, {
@@ -31,7 +31,7 @@ const MainNavigator = createBottomTabNavigator(routes, {
       borderTopWidth: 0,
     },
     labelStyle: {
-      fontSize: fonts.small,
+      fontSize: fonts.medium,
     },
   },
   ...settings,

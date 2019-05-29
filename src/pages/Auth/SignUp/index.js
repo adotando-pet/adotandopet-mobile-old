@@ -35,14 +35,14 @@ class SignUp extends Component {
   };
 
   state = {
-    name: 'Claudio Orlandi',
-    phone: '123123',
+    name: '',
+    phone: '',
     gender: 'male',
-    email: 'a@b.com',
-    password: '123123',
-    passwordConfirmation: '123123',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+    notifications: false,
     error: '',
-    notifications: true,
   };
 
   handleNavigate = (route) => {
@@ -65,16 +65,17 @@ class SignUp extends Component {
       passwordConfirmation,
       notifications,
     } = this.state;
-    const { signupRequest } = this.props;
 
-    if (loading) return;
+    const { signupRequest } = this.props;
 
     if (!name || !phone || !email || !password || !this.passwordConfirmationInput) {
       this.setState({ error: 'Por favor, preencha todos os campos para continuar!' });
+      return;
     }
 
     if (password !== passwordConfirmation) {
       this.setState({ error: 'A senha e a confirmação não correspondem!' });
+      return;
     }
 
     signupRequest({
@@ -98,8 +99,9 @@ class SignUp extends Component {
 
   render() {
     const {
-      notifications, name, phone, gender, email, password, passwordConfirmation, error,
+      notifications, name, phone, email, password, passwordConfirmation, error,
     } = this.state;
+    const { auth: { loading } } = this.props;
     return (
       <Container>
         <StatusBar barStyle="light-content" />
@@ -136,8 +138,8 @@ class SignUp extends Component {
               ]}
               formHorizontal
               animation
-              initial={gender}
-              onPress={gender => this.setState({ gender })}
+              initial={0}
+              onPress={value => this.setState({ gender: value })}
             />
             <FormLabel>Email</FormLabel>
             <Input
@@ -181,9 +183,9 @@ class SignUp extends Component {
               </FormNotificationText>
               <FormNotificationSwitch value={notifications} onValueChange={this.handleSwitch} />
             </FormNotificationContainer>
-            {!!error && <Error>{error}</Error>}
           </FormContainer>
-          <NativeButton onPress={this.handleSignUp} value="Cadastrar" />
+          { !!error && <Error>{error}</Error> }
+          <NativeButton onPress={this.handleSignUp} value="Cadastrar" loading={loading} />
           <SigninLinkContainer onPress={() => this.handleNavigate('SignIn')}>
             <SigninLinkContent>
               <SigninLinkText>Já tem conta?</SigninLinkText>
