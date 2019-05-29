@@ -1,5 +1,4 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import logo from '~/assets/images/signin_logo.png';
 
@@ -17,18 +16,24 @@ import {
   AnimalInformation,
   Shared,
   SharedDescription,
+  SharedIcon,
   Castred,
   CastredDescription,
+  CastredIcon,
   Vascinated,
   VascinatedDescription,
+  VascinatedIcon,
   Special,
   SpecialDescription,
   SpecialContent,
   SpecialText,
+  SpecialIcon,
   Lives,
   LivesDescription,
+  LivesIcon,
   Sociable,
   SociableDescription,
+  SociableIcon,
   BackIconContainer,
   BackIcon,
   Title,
@@ -55,30 +60,30 @@ const Details = ({ navigation }) => (
       <AnimalInformation>
         <Shared>
           <SharedDescription>Shared guard?</SharedDescription>
-          <Icon name="done" size={12} color="black" />
+          <SharedIcon />
         </Shared>
         <Castred>
           <CastredDescription>Castred</CastredDescription>
-          <Icon name="done" size={12} color="black" />
+          <CastredIcon />
         </Castred>
         <Vascinated>
           <VascinatedDescription>Vascinated</VascinatedDescription>
-          <Icon name="clear" size={12} color="black" />
+          <VascinatedIcon />
         </Vascinated>
         <Special>
           <SpecialContent>
             <SpecialDescription>Special cares</SpecialDescription>
-            <Icon name="done" size={12} color="black" />
+            <SpecialIcon />
           </SpecialContent>
-          <SpecialText>N/A</SpecialText>
+          <SpecialText>Lorem ipsum</SpecialText>
         </Special>
         <Lives>
           <LivesDescription>Lives well</LivesDescription>
-          <Icon name="clear" size={10} color="black" />
+          <LivesIcon />
         </Lives>
         <Sociable>
           <SociableDescription>Sociable</SociableDescription>
-          <Icon name="done" size={10} color="black" />
+          <SociableIcon />
         </Sociable>
       </AnimalInformation>
     </Card>

@@ -54,7 +54,7 @@ export const Image = styled.Image.attrs({
   resize: 'cover',
 })`
   width: ${metrics.screenWidth * 0.2}px;
-  height: ${metrics.screenHeight * 0.2}px;
+  height: ${metrics.screenWidth * 0.2}px;
 `;
 
 export const Address = styled.View`
@@ -64,22 +64,26 @@ export const Address = styled.View`
 `;
 
 export const CepDescription = styled.Text`
-  font-size: ${fonts.medium};
+  font-size: ${fonts.big};
+  color: ${colors.black};
   margin-right: ${metrics.baseMargin};
 `;
 
 export const AddressDescription = styled.Text`
-  font-size: ${fonts.medium};
+  font-size: ${fonts.big};
+  color: ${colors.black};
 `;
 
 export const NameContainer = styled.View``;
 
 export const NameDescription = styled.Text`
   font-size: ${fonts.big};
+  color: ${colors.black};
 `;
 
 export const NameText = styled.Text`
   font-size: ${fonts.big};
+  color: ${colors.black};
 `;
 
 export const AnimalInformation = styled.View``;
@@ -89,21 +93,60 @@ export const Shared = styled.View`
   justify-content: space-between;
 `;
 
-export const SharedDescription = styled.Text``;
+export const SharedDescription = styled.Text`
+  font-size: ${fonts.big};
+  color: ${colors.black};
+`;
+
+export const SharedIcon = styled(Icon).attrs({
+  name: Platform.select({
+    android: 'md-checkmark',
+    ios: 'ios-checkmark',
+  }),
+})`
+  font-size: ${fonts.big};
+  color: ${colors.black};
+`;
 
 export const Castred = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;
 
-export const CastredDescription = styled.Text``;
+export const CastredDescription = styled.Text`
+  font-size: ${fonts.big};
+  color: ${colors.black};
+`;
+
+export const CastredIcon = styled(Icon).attrs({
+  name: Platform.select({
+    android: 'md-checkmark',
+    ios: 'ios-checkmark',
+  }),
+})`
+  font-size: ${fonts.big};
+  color: ${colors.black};
+`;
 
 export const Vascinated = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;
 
-export const VascinatedDescription = styled.Text``;
+export const VascinatedDescription = styled.Text`
+  font-size: ${fonts.big};
+  color: ${colors.black};
+`;
+
+export const VascinatedIcon = styled(Icon).attrs({
+  name: Platform.select({
+    android: 'md-close',
+    ios: 'ios-close',
+  }),
+})`
+  font-size: ${fonts.big};
+  color: ${colors.black};
+`;
 
 export const Special = styled.View`
   flex-direction: column;
@@ -115,20 +158,62 @@ export const SpecialContent = styled.View`
   justify-content: space-between;
 `;
 
-export const SpecialDescription = styled.Text``;
+export const SpecialDescription = styled.Text`
+  font-size: ${fonts.big};
+  color: ${colors.black};
+`;
 
-export const SpecialText = styled.Text``;
+export const SpecialText = styled.Text`
+  font-size: ${fonts.small};
+  color: ${colors.black};
+`;
+
+export const SpecialIcon = styled(Icon).attrs({
+  name: Platform.select({
+    android: 'md-close',
+    ios: 'ios-close',
+  }),
+})`
+  font-size: ${fonts.big};
+  color: ${colors.black};
+`;
 
 export const Lives = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;
 
-export const LivesDescription = styled.Text``;
+export const LivesDescription = styled.Text`
+  font-size: ${fonts.big};
+  color: ${colors.black};
+`;
+
+export const LivesIcon = styled(Icon).attrs({
+  name: Platform.select({
+    android: 'md-checkmark',
+    ios: 'ios-checkmark',
+  }),
+})`
+  font-size: ${fonts.big};
+  color: ${colors.black};
+`;
 
 export const Sociable = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;
 
-export const SociableDescription = styled.Text``;
+export const SociableDescription = styled.Text`
+  font-size: ${fonts.big};
+  color: ${colors.black};
+`;
+
+export const SociableIcon = styled(Icon).attrs({
+  name: Platform.select({
+    android: 'md-close',
+    ios: 'ios-close',
+  }),
+})`
+  font-size: ${fonts.big};
+  color: ${colors.black};
+`;
