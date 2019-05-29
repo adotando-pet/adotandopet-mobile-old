@@ -1,5 +1,4 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import logo from '~/assets/images/signin_logo.png';
 
@@ -17,22 +16,35 @@ import {
   AnimalInformation,
   Shared,
   SharedDescription,
+  SharedIcon,
   Castred,
   CastredDescription,
+  CastredIcon,
   Vascinated,
   VascinatedDescription,
+  VascinatedIcon,
   Special,
   SpecialDescription,
   SpecialContent,
   SpecialText,
+  SpecialIcon,
   Lives,
   LivesDescription,
+  LivesIcon,
   Sociable,
   SociableDescription,
+  SociableIcon,
+  BackIconContainer,
+  BackIcon,
+  Title,
 } from './styles';
 
-const Details = () => (
+const Details = ({ navigation }) => (
   <Container>
+    <BackIconContainer onPress={() => navigation.goBack()}>
+      <BackIcon />
+    </BackIconContainer>
+    <Title>Detalhes</Title>
     <Card>
       <TitleContainer>
         <Image source={logo} />
@@ -48,30 +60,30 @@ const Details = () => (
       <AnimalInformation>
         <Shared>
           <SharedDescription>Shared guard?</SharedDescription>
-          <Icon />
+          <SharedIcon />
         </Shared>
         <Castred>
           <CastredDescription>Castred</CastredDescription>
-          <Icon />
+          <CastredIcon />
         </Castred>
         <Vascinated>
           <VascinatedDescription>Vascinated</VascinatedDescription>
-          <Icon />
+          <VascinatedIcon />
         </Vascinated>
         <Special>
           <SpecialContent>
             <SpecialDescription>Special cares</SpecialDescription>
-            <Icon />
+            <SpecialIcon />
           </SpecialContent>
-          <SpecialText>N/A</SpecialText>
+          <SpecialText>Lorem ipsum</SpecialText>
         </Special>
         <Lives>
           <LivesDescription>Lives well</LivesDescription>
-          <Icon />
+          <LivesIcon />
         </Lives>
         <Sociable>
           <SociableDescription>Sociable</SociableDescription>
-          <Icon />
+          <SociableIcon />
         </Sociable>
       </AnimalInformation>
     </Card>
