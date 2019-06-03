@@ -7,16 +7,13 @@ export const Container = styled.View`
   background-color: ${colors.primary};
 `;
 
-export const ContentContainer = styled.View`
-  padding: ${metrics.basePadding}px;
-`;
-
 export const CardButton = styled.TouchableOpacity``;
 
 export const CardContainer = styled.View`
   padding: ${metrics.basePadding}px;
   background: ${colors.white};
   border-radius: ${metrics.baseRadius};
+  margin-bottom: ${metrics.baseMargin}px;
 `;
 
 export const TitleContainer = styled.View`
@@ -58,4 +55,25 @@ export const TagDescription = styled.Text`
 
 export const Description = styled.Text`
   font-size: ${fonts.small};
+`;
+
+export const Empty = styled.Text`
+  color: ${colors.white};
+  font-weight: 600;
+  text-align: center;
+  margin-top: ${metrics.baseMargin * 2}px;
+`;
+
+export const CardsList = styled.FlatList`
+  flex: 1;
+  align-self: stretch;
+  padding: ${metrics.basePadding}px;
+`;
+
+export const LoadingIndicator = styled.ActivityIndicator.attrs({
+  size: 'large',
+  color: colors.white,
+})`
+  align-self: center;
+  margin-top: ${metrics.baseMargin * 2};
 `;

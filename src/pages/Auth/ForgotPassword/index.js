@@ -24,6 +24,11 @@ class ForgotPassword extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
       goBack: PropTypes.func,
+      navigate: PropTypes.func,
+    }).isRequired,
+    forgotPasswordRequest: PropTypes.func.isRequired,
+    auth: PropTypes.shape({
+      loading: PropTypes.func,
     }).isRequired,
   };
 
@@ -33,9 +38,7 @@ class ForgotPassword extends Component {
   };
 
   handleSubmit = () => {
-    const {
-      email,
-    } = this.state;
+    const { email } = this.state;
 
     const { forgotPasswordRequest } = this.props;
 
@@ -45,7 +48,7 @@ class ForgotPassword extends Component {
     }
 
     forgotPasswordRequest({ email });
-  }
+  };
 
   handleInputChange = (id, value) => {
     this.setState({ [id]: value });
@@ -54,7 +57,7 @@ class ForgotPassword extends Component {
   render() {
     const { email, error } = this.state;
     const {
-      navigation: { goBack },
+      navigation: { navigate, goBack },
       auth: { loading },
     } = this.props;
     return (
@@ -74,10 +77,10 @@ class ForgotPassword extends Component {
             value={email}
             onChangeText={this.handleInputChange}
             returnKeyType="send"
-            onSubmitEditing={() => navigation.navigate('SignIn')}
+            onSubmitEditing={() => navigate('SignIn')}
             keyboardType="email-address"
           />
-          { !!error && <Error>{error}</Error> }
+          {!!error && <Error>{error}</Error>}
           <NativeButton onPress={this.handleSubmit} value="Enviar" loading={loading} />
         </ContentContainer>
       </Container>

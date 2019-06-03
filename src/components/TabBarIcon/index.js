@@ -1,6 +1,5 @@
 import React from 'react';
-
-import Icon from 'react-native-vector-icons/Ionicons';
+import PropTypes from 'prop-types';
 
 import { Container, FeaturedIcon } from './styles';
 
@@ -9,5 +8,9 @@ const TabBarIcon = ({ focused, ...props }) => (
     <FeaturedIcon {...props} focused={focused} />
   </Container>
 );
+
+TabBarIcon.propTypes = {
+  focused: PropTypes.bool.isRequired,
+};
 
 export default TabBarIcon;

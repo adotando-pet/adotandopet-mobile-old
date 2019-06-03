@@ -1,25 +1,21 @@
-import React, { Component } from 'react';
-import { Animated } from 'react-native';
+import React from 'react';
 import PropTypes from 'prop-types';
-
-import { colors, metrics } from '~/styles';
 
 import { StyledInput } from './styles';
 
-const Input = ({ label, setRef, onChangeText, id, ...other}) => (
+const Input = ({
+  setRef, onChangeText, id, ...other
+}) => (
   <StyledInput
     ref={(input) => {
       setRef(input);
-      this.input = input;
     }}
     autoCorrect={false}
     allowFontScaling={false}
     onChangeText={value => onChangeText(id, value)}
     {...other}
-    onFocus={this.handleFocus}
-    onBlur={this.handleBlur}
   />
-)
+);
 
 Input.propTypes = {
   value: PropTypes.string,

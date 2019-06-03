@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation';
 import Announce from '~/pages/Home/Announce';
 import Search from '~/pages/Home/Search';
 import Details from '~/pages/Home/Details';
+import Settings from '~/pages/Main/Settings';
 
 import TabBarIcon from '~/components/TabBarIcon';
 
@@ -13,6 +14,7 @@ const HomeStack = createStackNavigator(
     Announce,
     Search,
     Details,
+    Settings,
   },
   {
     initialRouteName: 'Announce',

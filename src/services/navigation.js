@@ -14,3 +14,9 @@ export function navigate(routeName, params = {}) {
     }),
   );
 }
+
+export function goBack() {
+  navigator.dispatch(
+    NavigationActions.back(),
+  );
+}
