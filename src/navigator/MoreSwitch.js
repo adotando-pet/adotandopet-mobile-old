@@ -4,6 +4,8 @@ import { createSwitchNavigator } from 'react-navigation';
 
 import More from '~/pages/Main/More';
 import RegisterPet from '~/pages/Main/RegisterPet';
+import MyPets from '~/pages/Main/MyPets';
+import MyAnnounces from '~/pages/Main/MyAnnounces';
 
 import TabBarIcon from '~/components/TabBarIcon';
 
@@ -11,6 +13,8 @@ const MoreSwitch = createSwitchNavigator(
   {
     More,
     RegisterPet,
+    MyPets,
+    MyAnnounces,
   },
   {
     initialRouteName: 'More',

@@ -18,7 +18,7 @@ const routes = {
 };
 
 const settings = {
-  initialRouteName: 'HomeStack',
+  initialRouteName: 'MoreSwitch',
 };
 
 const MainNavigator = createBottomTabNavigator(routes, {

@@ -15,6 +15,11 @@ import {
   getAdoptionRequest, registerAdoptionRequest,
 } from './adoption';
 
+import { PetTypes } from '~/store/ducks/pet';
+import {
+  registerPetRequest, getPetRequest,
+} from './pet';
+
 export default function* rootSaga() {
   yield all([
     takeLatest(AuthTypes.SIGNUP_REQUEST, signUpRequest),
@@ -26,5 +31,8 @@ export default function* rootSaga() {
 
     takeLatest(AdoptionTypes.GET_ADOPTION_REQUEST, getAdoptionRequest),
     takeLatest(AdoptionTypes.REGISTER_ADOPTION_REQUEST, registerAdoptionRequest),
+
+    takeLatest(PetTypes.REGISTER_PET_REQUEST, registerPetRequest),
+    takeLatest(PetTypes.GET_PET_REQUEST, getPetRequest),
   ]);
 }
