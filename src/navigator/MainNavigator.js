@@ -3,10 +3,10 @@ import { createBottomTabNavigator } from 'react-navigation';
 import Favorites from '~/pages/Main/Favorites';
 import Adoptions from '~/pages/Main/Adoptions';
 import Chat from '~/pages/Main/Chat';
-import More from '~/pages/Main/More';
 
 import { colors, fonts } from '~/styles';
 
+import MoreSwitch from './MoreSwitch';
 import HomeStack from './HomeStack';
 
 const routes = {
@@ -14,11 +14,11 @@ const routes = {
   Adoptions,
   Favorites,
   Chat,
-  More,
+  MoreSwitch,
 };
 
 const settings = {
-  initialRouteName: 'More',
+  initialRouteName: 'MoreSwitch',
 };
 
 const MainNavigator = createBottomTabNavigator(routes, {

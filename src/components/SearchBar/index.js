@@ -12,7 +12,7 @@ import {
 
 export default class SearchBar extends Component {
   state = {
-    filtersVisible: true,
+    filtersVisible: false,
   };
 
   changeFiltersVisibility = () => {

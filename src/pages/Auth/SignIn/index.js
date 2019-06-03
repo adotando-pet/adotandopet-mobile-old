@@ -35,6 +35,9 @@ class SignIn extends Component {
       navigate: PropTypes.func,
     }).isRequired,
     signinRequest: PropTypes.func.isRequired,
+    auth: PropTypes.shape({
+      loading: PropTypes.bool,
+    }).isRequired,
   };
 
   state = {
@@ -113,7 +116,6 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(AuthActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

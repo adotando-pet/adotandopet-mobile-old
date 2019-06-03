@@ -1,4 +1,6 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
+
+import { AsyncStorage } from 'react-native';
 
 import Toast from 'react-native-toast-native';
 
@@ -13,12 +15,17 @@ export function* signUpRequest({ data }) {
   try {
     const response = yield call(api.post, '/users', data);
 
-    console.tron.log('response', response);
+    Toast.show(
+      `Você foi cadastrado(a) com sucesso \n${response.data.name}!`,
+      Toast.SHORT,
+      Toast.TOP,
+      {
+        ...general.toast,
+        ...general.toastSuccess,
+      },
+    );
 
-    Toast.show(`Você foi cadastrado(a) com sucesso \n${response.data.name}!`, Toast.SHORT, Toast.TOP, {
-      ...general.toast,
-      ...general.toastSuccess,
-    });
+    yield put(AuthActions.signupSuccess());
 
     navigate('Announce');
   } catch (err) {
@@ -39,6 +46,8 @@ export function* signInRequest({ data }) {
       ...general.toastSuccess,
     });
 
+    yield call(AsyncStorage.setItem, '@AdotandoPet:token', response.data.token.token);
+
     yield put(AuthActions.signinSuccess(response.data));
 
     navigate('Announce');
@@ -53,7 +62,10 @@ export function* signInRequest({ data }) {
 
 export function* forgotPasswordRequest({ data }) {
   try {
-    const response = yield call(api.post, '/forgot-password', { email: data.email, redirect_url: 'https://urltemporaria.com.br/resetar-senha' });
+    yield call(api.post, '/forgot-password', {
+      email: data.email,
+      redirect_url: 'https://urltemporaria.com.br/resetar-senha',
+    });
 
     Toast.show(`Foram enviadas instruções para o email \n${data.email}!`, Toast.SHORT, Toast.TOP, {
       ...general.toast,
@@ -63,7 +75,33 @@ export function* forgotPasswordRequest({ data }) {
     // navigate('Announce');
   } catch (err) {
     yield put(AuthActions.failure());
-    Toast.show('Houve um erro no processo para resetar sua senha! \nTente novamente...', Toast.SHORT, Toast.TOP, {
+    Toast.show(
+      'Houve um erro no processo para resetar sua senha! \nTente novamente...',
+      Toast.SHORT,
+      Toast.TOP,
+      {
+        ...general.toast,
+        ...general.toastDanger,
+      },
+    );
+  }
+}
+
+export function* authCheck({ routeName }) {
+  try {
+    const auth = yield select(state => state.auth);
+
+    if (auth.token) {
+      navigate(routeName);
+    } else {
+      Toast.show('Você precisa fazer Login para acessar essa página!', Toast.SHORT, Toast.TOP, {
+        ...general.toast,
+        ...general.toastDanger,
+      });
+    }
+  } catch (err) {
+    yield put(AuthActions.failure());
+    Toast.show('Houve ao tentar verificar seu Login. Tente novamente...', Toast.SHORT, Toast.TOP, {
       ...general.toast,
       ...general.toastDanger,
     });

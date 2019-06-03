@@ -1,9 +1,10 @@
 import styled from 'styled-components/native';
 
-import { Platform, StyleSheet } from 'react-native';
+import { Platform } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
-import Touchable from 'react-native-platform-touchable';
+
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import { colors, metrics, fonts } from '~/styles';
 
@@ -19,33 +20,35 @@ export const ContentContainer = styled.KeyboardAvoidingView.attrs({
   margin-top: ${metrics.headerMargin}px;
   flex: 1;
   align-items: center;
-  padding: ${metrics.basePadding}px;
 `;
 
 export const Title = styled.Text`
-  margin-top: ${metrics.baseMargin * 2};
   font-size: ${fonts.big * 2};
   font-weight: bold;
   text-align: center;
   color: ${colors.white};
-  margin-bottom: ${metrics.baseMargin * 2};
+  margin-bottom: ${metrics.baseMargin * 3};
 `;
 
-export const ListContainer = styled.ScrollView`
+export const WarningContainer = styled.View`
   flex: 1;
-  align-self: stretch;
+  align-items: center;
+  justify-content: center;
 `;
 
-export const ListItem = styled(Touchable)`
-  align-self: stretch;
-  margin-top: ${metrics.baseMargin}px;
-  padding: ${metrics.basePadding / 2}px 0;
-  border-bottom-width: ${StyleSheet.hairlineWidth};
-  border-bottom-color: ${colors.white};
-`;
-
-export const ListItemText = styled.Text`
-  font-size: ${fonts.medium};
+export const WarningIcon = styled(Icon).attrs({
+  name: Platform.select({
+    ios: 'ios-construct',
+    android: 'md-construct',
+  }),
+})`
+  margin-right: ${metrics.baseMargin * 2};
+  font-size: ${fonts.bigger * 4};
   color: ${colors.white};
-  text-transform: uppercase;
+`;
+
+export const WarningText = styled.Text`
+  color: ${colors.white};
+  font-size: ${fonts.bigger * 1.5};
+  font-weight: bold;
 `;

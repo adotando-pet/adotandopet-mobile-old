@@ -32,6 +32,9 @@ class SignUp extends Component {
       navigate: PropTypes.func,
     }).isRequired,
     signupRequest: PropTypes.func.isRequired,
+    auth: PropTypes.shape({
+      loading: PropTypes.bool,
+    }).isRequired,
   };
 
   state = {
@@ -56,7 +59,6 @@ class SignUp extends Component {
 
   handleSignUp = () => {
     const {
-      loading,
       name,
       phone,
       gender,
@@ -85,7 +87,7 @@ class SignUp extends Component {
       email,
       password,
       password_confirmation: passwordConfirmation,
-      notifications,
+      have_notifications: notifications,
     });
   };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { StatusBar } from 'react-native';
 
@@ -26,5 +27,11 @@ const Privacy = ({ navigation }) => (
     </ContentContainer>
   </Container>
 );
+
+Privacy.propTypes = {
+  navigation: PropTypes.shape({
+    goBack: PropTypes.func,
+  }).isRequired,
+};
 
 export default Privacy;
