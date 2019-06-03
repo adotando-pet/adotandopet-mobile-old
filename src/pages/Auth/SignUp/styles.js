@@ -71,7 +71,7 @@ export const Error = styled.Text`
   font-size: ${fonts.small};
   color: ${colors.danger};
   text-align: center;
-  margin-top: ${metrics.baseMargin};
+  margin-bottom: ${metrics.baseMargin * 2};
   font-weight: bold;
 `;
 

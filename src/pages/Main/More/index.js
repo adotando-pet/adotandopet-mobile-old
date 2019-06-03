@@ -1,76 +1,90 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  Text, Image, StyleSheet, Dimensions, ImageBackground, StatusBar,
-} from 'react-native';
+import { StatusBar } from 'react-native';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import AuthActions from '~/store/ducks/auth';
 
 import TabBarIcon from '~/components/TabBarIcon';
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    paddingHorizontal: 20,
-  },
-  fileName: {
-    fontWeight: 'bold',
-    marginTop: 5,
-  },
-  instructions: {
-    color: '#DDD',
-    fontSize: 14,
-    marginTop: 20,
-    textAlign: 'center',
-  },
-  logo: {
-    height: Dimensions.get('window').height * 0.11,
-    marginVertical: Dimensions.get('window').height * 0.11,
-    width: Dimensions.get('window').height * 0.11 * (1950 / 662),
-  },
-  welcome: {
-    color: '#fff',
-    fontSize: 22,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+import {
+  Container,
+  ContentContainer,
+  BackIconContainer,
+  BackIcon,
+  Title,
+  ListContainer,
+  ListItem,
+  ListItemText,
+} from './styles';
 
-const More = () => (
-  <ImageBackground
-    source={{
-      uri: 'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/background.png',
-    }}
-    style={styles.container}
-    resizeMode="cover"
-  >
-    <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-    <Image
-      source={{
-        uri: 'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/rocketseat_logo.png',
-      }}
-      style={styles.logo}
-      resizeMode="contain"
-    />
-    <Text style={styles.welcome}>Bem-vindo ao Template Avançado!</Text>
-    <Text style={styles.instructions}>Essa é a tela principal da sua aplicação =)</Text>
-    <Text style={styles.instructions}>Você pode editar a tela no arquivo:</Text>
-    <Text style={[styles.instructions, styles.fileName]}>src/pages/More/index.js</Text>
-  </ImageBackground>
-);
+class More extends Component {
+  handleNavigate = (routeName) => {
+    const { navigation } = this.props;
+
+    navigation.navigate(routeName);
+  }
+
+  handleLogout = () => {
+    const { logout } = this.props;
+
+    logout();
+  }
+
+  render() {
+    const { navigation, token } = this.props
+    return (
+      <Container>
+        <StatusBar barStyle="light-content" />
+        <ContentContainer>
+          <BackIconContainer onPress={() => navigation.goBack()}>
+            <BackIcon />
+          </BackIconContainer>
+          <Title>Mais</Title>
+          <ListContainer>
+            <ListItem onPress={() => {}}>
+              <ListItemText>Cadastrar um Anúncio</ListItemText>
+            </ListItem>
+            <ListItem onPress={() => {}}>
+              <ListItemText>Cadastrar um Pet</ListItemText>
+            </ListItem>
+            { !!token && <ListItem onPress={() => {}}>
+              <ListItemText>Meus Anúncios</ListItemText>
+            </ListItem>}
+            { !!token && <ListItem onPress={() => {}}>
+              <ListItemText>Meus Pet's</ListItemText>
+            </ListItem>}
+            <ListItem onPress={() => {}}>
+              <ListItemText>Configurações</ListItemText>
+            </ListItem>
+            <ListItem onPress={() => {}}>
+              <ListItemText>Denúnciar Maus Tratos</ListItemText>
+            </ListItem>
+            <ListItem onPress={() => {}}>
+              <ListItemText>Encontrar Pet</ListItemText>
+            </ListItem>
+            { !!!token && <ListItem onPress={() => this.handleNavigate('SignIn')}>
+              <ListItemText>Entrar</ListItemText>
+            </ListItem>}
+            { !!!token && <ListItem onPress={() => this.handleNavigate('SignUp')}>
+              <ListItemText>Cadastre-se</ListItemText>
+            </ListItem>}
+            { !!token && <ListItem onPress={this.handleLogout}>
+              <ListItemText>Sair</ListItemText>
+            </ListItem>}
+          </ListContainer>
+        </ContentContainer>
+      </Container>
+    );
+  }
+}
 
 const TabIcon = ({ tintColor, focused }) => (
   <TabBarIcon name="ios-more" focused={focused} color={tintColor} />
 );
 TabIcon.propTypes = {
-  tintColor: PropTypes.string.isRequired,
-  focused: PropTypes.bool.isRequired,
-};
-
-const DrawerIcon = ({ tintColor, focused }) => (
-  <TabBarIcon name="md-more" focused={focused} color={tintColor} />
-);
-DrawerIcon.propTypes = {
   tintColor: PropTypes.string.isRequired,
   focused: PropTypes.bool.isRequired,
 };
@@ -81,17 +95,19 @@ More.navigationOptions = ({ navigation }) => {
     tabBarVisible = false;
   }
 
-  let drawerLockMode = 'unlocked';
-  if (navigation.state.index > 0) drawerLockMode = 'locked-closed';
-
   return {
     tabBarLabel: 'Mais',
     tabBarIcon: TabIcon,
     tabBarVisible,
-    drawerLockMode,
-    drawerLabel: 'Mais',
-    drawerIcon: DrawerIcon,
   };
 };
 
-export default More;
+const mapStateToProps = state => ({
+  loading: state.auth.loading,
+  token: state.auth.token,
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(AuthActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(More);

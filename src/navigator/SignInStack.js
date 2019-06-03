@@ -15,7 +15,6 @@ const SignInStack = createStackNavigator(
     defaultNavigationOptions: {
       header: null,
     },
-    initialRouteName: 'SignIn',
   },
 );
 

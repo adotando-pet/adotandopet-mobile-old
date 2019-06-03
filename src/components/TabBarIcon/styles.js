@@ -8,12 +8,12 @@ export const Container = styled.View`
   align-items: center;
   justify-content: center;
   padding: ${metrics.basePadding / 2}px;
-  width: 36px;
-  height: 36px;
-  border-radius: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
   background: ${props => (props.focused ? colors.mediumWhiteTransparent : colors.transparent)};
 `;
 
 export const FeaturedIcon = styled(Icon)`
-  font-size: ${props => (props.focused ? fonts.big : fonts.big - 2)};
+  font-size: ${props => (props.focused ? fonts.big + 2 : fonts.big)};
 `;

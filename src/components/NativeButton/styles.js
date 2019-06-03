@@ -20,3 +20,8 @@ export const ButtonText = styled.Text`
   color: ${colors.white};
   font-size: ${fonts.big};
 `;
+
+export const ButtonLoading = styled.ActivityIndicator.attrs({
+  size: 'small',
+  color: colors.white,
+})``;

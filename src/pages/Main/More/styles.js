@@ -1,8 +1,9 @@
 import styled from 'styled-components/native';
 
-import { Platform } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
+import Touchable from 'react-native-platform-touchable';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -20,7 +21,6 @@ export const ContentContainer = styled.KeyboardAvoidingView.attrs({
   margin-top: ${metrics.headerMargin}px;
   flex: 1;
   align-items: center;
-  justify-content: center;
   padding: ${metrics.basePadding}px;
 `;
 
@@ -42,25 +42,29 @@ export const BackIcon = styled(Icon).attrs({
 `;
 
 export const Title = styled.Text`
+  margin-top: ${metrics.baseMargin * 2};
   font-size: ${fonts.big * 2};
   font-weight: bold;
   text-align: center;
   color: ${colors.white};
-  margin-bottom: ${metrics.baseMargin * 4};
+  margin-bottom: ${metrics.baseMargin * 2};
 `;
 
-export const Description = styled.Text`
+export const ListContainer = styled.ScrollView`
+  flex: 1;
+  align-self: stretch;
+`;
+
+export const ListItem = styled(Touchable)`
+  align-self: stretch;
+  margin-top: ${metrics.baseMargin}px;
+  padding: ${metrics.basePadding / 2}px 0;
+  border-bottom-width: ${StyleSheet.hairlineWidth};
+  border-bottom-color: ${colors.white};
+`;
+
+export const ListItemText = styled.Text`
   font-size: ${fonts.medium};
   color: ${colors.white};
-  text-align: center;
-  margin-bottom: ${metrics.baseMargin * 2};
-`;
-
-export const Error = styled.Text`
-  font-size: ${fonts.small};
-  color: ${colors.danger};
-  text-align: center;
-  margin-top: ${metrics.baseMargin};
-  margin-bottom: ${metrics.baseMargin * 2};
-  font-weight: bold;
+  text-transform: uppercase;
 `;

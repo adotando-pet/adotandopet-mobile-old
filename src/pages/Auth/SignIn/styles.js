@@ -42,6 +42,14 @@ export const ForgotPasswordText = styled.Text`
   font-size: ${fonts.medium};
 `;
 
+export const Error = styled.Text`
+  font-size: ${fonts.small};
+  color: ${colors.danger};
+  text-align: center;
+  margin-bottom: ${metrics.baseMargin * 2};
+  font-weight: bold;
+`;
+
 export const SignupLinkContainer = styled.TouchableWithoutFeedback`
   align-self: center;
 `;
