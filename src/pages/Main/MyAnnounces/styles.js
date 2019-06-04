@@ -22,6 +22,23 @@ export const ContentContainer = styled.KeyboardAvoidingView.attrs({
   align-items: center;
 `;
 
+export const BackIconContainer = styled.TouchableOpacity`
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: ${metrics.basePadding / 4}px ${metrics.basePadding / 2}px;
+`;
+
+export const BackIcon = styled(Icon).attrs({
+  name: Platform.select({
+    android: 'md-arrow-round-back',
+    ios: 'ios-arrow-round-back',
+  }),
+})`
+  color: ${colors.white};
+  font-size: ${fonts.big * 2};
+`;
+
 export const Title = styled.Text`
   font-size: ${fonts.big * 2};
   font-weight: bold;

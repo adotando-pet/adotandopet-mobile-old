@@ -4,8 +4,8 @@ import Immutable from 'seamless-immutable';
 /* Types & Action Creators */
 
 const { Types, Creators } = createActions({
-  registerAdoptionRequest: ['id'],
-  registerAdoptionSuccess: ['data'],
+  registerAdoptionRequest: ['data'],
+  registerAdoptionSuccess: null,
   registerAdoptionFailure: null,
 
   getAdoptionRequest: null,
@@ -26,10 +26,7 @@ export const INITIAL_STATE = Immutable({
 /* Reducers to types */
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.REGISTER_ADOPTION_REQUEST]: state => state.merge({ loading: true }),
-  [Types.REGISTER_ADOPTION_SUCCESS]: (state, { data }) => state.merge({
-    loading: false,
-    data: [...state.data, data],
-  }),
+  [Types.REGISTER_ADOPTION_SUCCESS]: state => state.merge({ loading: false }),
   [Types.REGISTER_ADOPTION_FAILURE]: state => state.merge({ loading: false }),
 
   [Types.GET_ADOPTION_REQUEST]: state => state.merge({ loading: true }),

@@ -14,6 +14,8 @@ import logo from '~/assets/images/signin_logo.png';
 import {
   Container,
   ContentContainer,
+  BackIconContainer,
+  BackIcon,
   Logo,
   ForgotPasswordLink,
   ForgotPasswordText,
@@ -72,6 +74,9 @@ class SignIn extends Component {
       <Container>
         <StatusBar barStyle="light-content" />
         <ContentContainer>
+          <BackIconContainer onPress={() => navigation.navigate('Announce')}>
+            <BackIcon />
+          </BackIconContainer>
           <Logo source={logo} />
           <FloatLabelInput
             id="email"

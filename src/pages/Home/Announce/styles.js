@@ -1,4 +1,8 @@
+import { Platform } from 'react-native';
+
 import styled from 'styled-components/native';
+
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import { colors, metrics, fonts } from '~/styles';
 
@@ -20,7 +24,7 @@ export const TitleContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: ${metrics.baseMargin * 2}px;
+  margin-bottom: ${metrics.baseMargin}px;
 `;
 
 export const Image = styled.Image.attrs({
@@ -30,22 +34,45 @@ export const Image = styled.Image.attrs({
   height: ${metrics.screenWidth * 0.2}px;
 `;
 
-export const NameContainer = styled.View``;
+export const InfoContainer = styled.View``;
+
+export const NameContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const GenderIcon = styled(Icon).attrs(({ gender }) => ({
+  name: Platform.select({
+    ios: `ios-${gender === 'female' ? 'female' : 'male'}`,
+    android: `md-${gender === 'female' ? 'female' : 'male'}`,
+  }),
+}))`
+  font-size: ${fonts.bigger};
+  color: ${colors.primary};
+  margin-right: ${metrics.baseMargin};
+`;
 
 export const NameText = styled.Text`
   font-size: ${fonts.big};
+  font-weight: bold;
+  margin-bottom: ${metrics.baseMargin / 2};
 `;
 
 export const NameDescription = styled.Text`
   font-size: ${fonts.medium};
 `;
 
+export const TagsContainer = styled.View`
+  align-self: stretch;
+  flex-direction: row;
+`;
+
 export const TagContainer = styled.View`
   background: ${colors.buttonPrimary};
   border-radius: ${metrics.baseRadius};
-  align-self: flex-start;
-  padding: ${metrics.basePadding / 2}px ${metrics.basePadding}px;
-  margin-bottom: ${metrics.baseMargin * 2}px;
+  padding: ${metrics.basePadding / 4}px ${metrics.basePadding / 2}px;
+  margin-bottom: ${metrics.baseMargin}px;
+  margin-right: ${metrics.baseMargin}px;
 `;
 
 export const TagDescription = styled.Text`

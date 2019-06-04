@@ -28,16 +28,16 @@ export function* getAdoptionRequest() {
   }
 }
 
-export function* registerAdoptionRequest(advertisement) {
+export function* registerAdoptionRequest({ data }) {
   try {
-    const { data } = yield call(api.post, `/adoptions/${advertisement.id}`);
+    yield call(api.post, `/adoptions/${data.id}`);
 
     Toast.show('Interesse registrado!', Toast.SHORT, Toast.TOP, {
       ...general.toast,
       ...general.toastSuccess,
     });
 
-    yield put(AdoptionActions.registerAdoptionSuccess(data));
+    yield put(AdoptionActions.registerAdoptionSuccess());
 
     goBack();
   } catch (err) {

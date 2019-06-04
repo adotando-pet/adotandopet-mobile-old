@@ -123,3 +123,10 @@ export const AdoptionsList = styled.FlatList`
   align-self: stretch;
   padding: ${metrics.basePadding}px;
 `;
+
+export const EmptyText = styled.Text`
+  color: ${colors.white};
+  font-weight: 600;
+  text-align: center;
+  margin-top: ${metrics.baseMargin * 2}px;
+`;

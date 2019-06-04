@@ -7,7 +7,7 @@ import {
 
 import { AdvertisementTypes } from '~/store/ducks/advertisement';
 import {
-  getAdvertisementRequest,
+  getAdvertisementRequest, registerAdvertisementRequest,
 } from './advertisement';
 
 import { AdoptionTypes } from '~/store/ducks/adoption';
@@ -28,6 +28,7 @@ export default function* rootSaga() {
     takeLatest(AuthTypes.AUTH_CHECK, authCheck),
 
     takeLatest(AdvertisementTypes.GET_ADVERTISEMENT_REQUEST, getAdvertisementRequest),
+    takeLatest(AdvertisementTypes.REGISTER_ADVERTISEMENT_REQUEST, registerAdvertisementRequest),
 
     takeLatest(AdoptionTypes.GET_ADOPTION_REQUEST, getAdoptionRequest),
     takeLatest(AdoptionTypes.REGISTER_ADOPTION_REQUEST, registerAdoptionRequest),
