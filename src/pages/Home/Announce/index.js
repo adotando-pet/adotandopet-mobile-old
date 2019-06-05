@@ -18,9 +18,12 @@ import {
   CardContainer,
   TitleContainer,
   Image,
+  InfoContainer,
   NameContainer,
+  GenderIcon,
   NameText,
   NameDescription,
+  TagsContainer,
   TagContainer,
   TagDescription,
   Description,
@@ -82,14 +85,21 @@ class Announce extends Component {
         <CardContainer>
           <TitleContainer>
             <Image source={logo} />
-            <NameContainer>
-              <NameText>{item.pet.name}</NameText>
+            <InfoContainer>
+              <NameContainer>
+                <GenderIcon gender={item.pet.gender} />
+                <NameText>{item.pet.name}</NameText>
+              </NameContainer>
               <NameDescription>{item.pet.breed}, {convertSize(item.pet.size)}</NameDescription>
-            </NameContainer>
+            </InfoContainer>
           </TitleContainer>
-          <TagContainer>
-            <TagDescription>Dócil</TagDescription>
-          </TagContainer>
+          <TagsContainer>
+            {item.temperament.split(',').map(temperament => (
+              <TagContainer key={temperament}>
+                <TagDescription>{temperament}</TagDescription>
+              </TagContainer>
+            ))}
+          </TagsContainer>
           {item.specialCare ? (
             <Description>{item.specialCareDescription}</Description>
           ) : (

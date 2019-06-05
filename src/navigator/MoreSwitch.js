@@ -6,6 +6,7 @@ import More from '~/pages/Main/More';
 import RegisterPet from '~/pages/Main/RegisterPet';
 import MyPets from '~/pages/Main/MyPets';
 import MyAnnounces from '~/pages/Main/MyAnnounces';
+import RegisterAnnounce from '~/pages/Main/RegisterAnnounce';
 
 import TabBarIcon from '~/components/TabBarIcon';
 
@@ -15,6 +16,7 @@ const MoreSwitch = createSwitchNavigator(
     RegisterPet,
     MyPets,
     MyAnnounces,
+    RegisterAnnounce,
   },
   {
     initialRouteName: 'More',

@@ -17,9 +17,11 @@ import {
   Card,
   TitleContainer,
   Image,
+  PetInfoContainer,
   NameContainer,
-  NameDescription,
+  GenderIcon,
   NameText,
+  NameDescription,
   Address,
   AddressDescription,
   AnimalInformation,
@@ -87,10 +89,10 @@ class Details extends Component {
   handleAdoption = () => {
     const {
       registerAdoptionRequest,
-      auth: { data },
+      navigation: { state: { params: { data: { id } } } },
     } = this.props;
 
-    registerAdoptionRequest(data.id);
+    registerAdoptionRequest({ id });
   };
 
   render() {
@@ -119,26 +121,18 @@ class Details extends Component {
           <Card>
             <TitleContainer>
               <Image source={logo} />
-              <NameContainer>
-                <NameText>{data.pet.name}</NameText>
-                <NameDescription>
-                  {data.pet.breed}, {convertSize(data.pet.size)}
-                </NameDescription>
-              </NameContainer>
+              <PetInfoContainer>
+                <NameContainer>
+                  <GenderIcon gender={data.pet.gender} />
+                  <NameText>{data.pet.name}</NameText>
+                </NameContainer>
+                <NameDescription>{data.pet.breed}, {convertSize(data.pet.size)}</NameDescription>
+              </PetInfoContainer>
             </TitleContainer>
             <Address>
-              <AddressDescription>
-                {`${String(data.pet.user.address.zip).replace(
-                  /^(\d{2})(\d{3})(\d{3}).*/,
-                  '$1.$2-$3',
-                )} - ${data.pet.user.address.street}, ${data.pet.user.address.district}`}
-              </AddressDescription>
+              <AddressDescription>{data.description}</AddressDescription>
             </Address>
             <AnimalInformation>
-              <InfoContainer>
-                <InfoDescription>Guarda Compartilhada</InfoDescription>
-                <PositiveIcon />
-              </InfoContainer>
               <InfoContainer>
                 <InfoDescription>Cadastrado</InfoDescription>
                 {data.pet.isCastrated ? <PositiveIcon /> : <NegativeIcon />}
@@ -154,18 +148,28 @@ class Details extends Component {
                 </SpecialCareContentContainer>
                 {data.specialCare && <SpecialText>{data.specialCareDescription}</SpecialText>}
               </SpecialCareContainer>
-              <InfoContainer>
-                <InfoDescription>Vive Bem</InfoDescription>
-                {data.liveWell ? <PositiveIcon /> : <NegativeIcon />}
-              </InfoContainer>
-              <InfoContainer>
-                <InfoDescription>Sociavel</InfoDescription>
-                {data.sociable ? <PositiveIcon /> : <NegativeIcon />}
-              </InfoContainer>
+              <SpecialCareContainer>
+                <SpecialCareContentContainer>
+                  <InfoDescription>Características</InfoDescription>
+                </SpecialCareContentContainer>
+                <SpecialText>{data.temperament}</SpecialText>
+              </SpecialCareContainer>
+              <SpecialCareContainer>
+                <SpecialCareContentContainer>
+                  <InfoDescription>Vive Bem</InfoDescription>
+                </SpecialCareContentContainer>
+                <SpecialText>{data.liveWell}</SpecialText>
+              </SpecialCareContainer>
+              <SpecialCareContainer>
+                <SpecialCareContentContainer>
+                  <InfoDescription>Sociável Com</InfoDescription>
+                </SpecialCareContentContainer>
+                <SpecialText>{data.sociable}</SpecialText>
+              </SpecialCareContainer>
             </AnimalInformation>
             {(!token && (
               <LoginButton onPress={() => navigate('SignIn')}>
-                <LoginText>*Para adotar esse pet você precisa fazer Login antes</LoginText>
+                <LoginText>*Para adotar esse pet você precisa fazer Login!</LoginText>
               </LoginButton>
             ))
               || (userId !== data.pet.user.id && (

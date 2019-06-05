@@ -7,6 +7,10 @@ const { Types, Creators } = createActions({
   getAdvertisementRequest: null,
   getAdvertisementSuccess: ['data'],
   getAdvertisementFailure: null,
+
+  registerAdvertisementRequest: ['data'],
+  registerAdvertisementSuccess: ['data'],
+  failure: null,
 });
 
 export const AdvertisementTypes = Types;
@@ -24,4 +28,11 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_ADVERTISEMENT_REQUEST]: state => state.merge({ loading: true }),
   [Types.GET_ADVERTISEMENT_SUCCESS]: (state, { data }) => state.merge({ loading: false, data }),
   [Types.GET_ADVERTISEMENT_FAILURE]: state => state.merge({ loading: false }),
+
+  [Types.REGISTER_ADVERTISEMENT_REQUEST]: state => state.merge({ loading: true }),
+  [Types.REGISTER_ADVERTISEMENT_SUCCESS]: (state, { data }) => state.merge({
+    loading: false,
+    data: [...state.data, data],
+  }),
+  [Types.FAILURE]: state => state.merge({ loading: false }),
 });

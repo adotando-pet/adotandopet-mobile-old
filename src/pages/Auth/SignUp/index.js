@@ -14,6 +14,8 @@ import Input from '~/components/Input';
 import {
   Container,
   ContentContainer,
+  BackIconContainer,
+  BackIcon,
   Title,
   FormContainer,
   FormLabel,
@@ -103,11 +105,14 @@ class SignUp extends Component {
     const {
       notifications, name, phone, email, password, passwordConfirmation, error,
     } = this.state;
-    const { auth: { loading } } = this.props;
+    const { auth: { loading }, navigation } = this.props;
     return (
       <Container>
         <StatusBar barStyle="light-content" />
         <ContentContainer>
+          <BackIconContainer onPress={() => navigation.navigate('Announce')}>
+            <BackIcon />
+          </BackIconContainer>
           <Title>Cadastro</Title>
           <FormContainer>
             <FormLabel>Nome Completo</FormLabel>

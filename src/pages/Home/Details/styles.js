@@ -83,16 +83,32 @@ export const AddressDescription = styled.Text`
   color: ${colors.black};
 `;
 
-export const NameContainer = styled.View``;
+export const PetInfoContainer = styled.View``;
 
-export const NameDescription = styled.Text`
-  font-size: ${fonts.big};
-  color: ${colors.black};
+export const NameContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const GenderIcon = styled(Icon).attrs(({ gender }) => ({
+  name: Platform.select({
+    ios: `ios-${gender === 'female' ? 'female' : 'male'}`,
+    android: `md-${gender === 'female' ? 'female' : 'male'}`,
+  }),
+}))`
+  font-size: ${fonts.bigger};
+  color: ${colors.primary};
+  margin-right: ${metrics.baseMargin};
 `;
 
 export const NameText = styled.Text`
   font-size: ${fonts.big};
-  color: ${colors.black};
+  font-weight: bold;
+  margin-bottom: ${metrics.baseMargin / 2};
+`;
+
+export const NameDescription = styled.Text`
+  font-size: ${fonts.medium};
 `;
 
 export const AnimalInformation = styled.View``;

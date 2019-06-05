@@ -9,6 +9,8 @@ import { setNavigator } from '~/services/navigation';
 
 import Routes from '~/navigator';
 
+console.disableYellowBox = true;
+
 const App = () => (
   <Provider store={store}>
     <Routes ref={setNavigator} />

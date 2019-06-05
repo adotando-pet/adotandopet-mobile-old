@@ -30,6 +30,7 @@ import {
   MoreButton,
   MoreIcon,
   AdoptionsList,
+  EmptyText,
 } from './styles';
 
 class Adoptions extends Component {
@@ -106,6 +107,12 @@ class Adoptions extends Component {
     } = this.props;
 
     const { refreshing } = this.state;
+
+    if (!data.length) {
+      return (
+        <EmptyText>Você ainda não tem nenhuma adoção!</EmptyText>
+      );
+    }
 
     return (
       <AdoptionsList
