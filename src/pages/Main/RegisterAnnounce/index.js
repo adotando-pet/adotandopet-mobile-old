@@ -65,10 +65,10 @@ class RegisterAnnounce extends Component {
 
   state = {
     isDisabled: false,
-    isVacined: false,
+    isVacined: true,
     specialCare: false,
     specialCareDescription: '',
-    description: '',
+    description: 'Essa é uma descrição padrão para não perder tempo diitando',
     loading: false,
     petId: null,
     refreshing: false,
@@ -95,7 +95,7 @@ class RegisterAnnounce extends Component {
       specialCare,
       specialCareDescription: specialCare ? specialCareDescription : null,
       temperament: 'Dócil,Carinhoso,Mimado',
-      liveWell: 'Cachorros,Gatos,Peixes',
+      liveWell: 'Casa,Apartamento,Chácara',
       sociable: 'Cachorros,Gatos,Peixes',
       description,
       pet_id: petId,

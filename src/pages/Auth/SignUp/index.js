@@ -40,8 +40,8 @@ class SignUp extends Component {
   };
 
   state = {
-    name: '',
-    phone: '',
+    name: 'Usuário 01',
+    phone: '123123',
     gender: 'male',
     email: '',
     password: '',

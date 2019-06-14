@@ -41,14 +41,14 @@ class RegisterPet extends Component {
   };
 
   state = {
-    name: '',
-    breed: '',
+    name: 'Teste 01',
+    breed: 'Teste 01',
     error: '',
-    size: '',
-    sex: '',
-    age: '',
-    color: '',
-    isCastrated: true,
+    size: 'medium',
+    sex: 'male',
+    age: '5',
+    color: 'Teste 01',
+    isCastrated: false,
   };
 
   handleSwitch = value => this.setState({ isCastrated: value });
