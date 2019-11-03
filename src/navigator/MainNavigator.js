@@ -1,4 +1,4 @@
-import { createBottomTabNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import Favorites from '~/pages/Main/Favorites';
 import Adoptions from '~/pages/Main/Adoptions';

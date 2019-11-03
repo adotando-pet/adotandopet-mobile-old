@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import Announce from '~/pages/Home/Announce';
 import Search from '~/pages/Home/Search';
@@ -18,7 +18,7 @@ const HomeStack = createStackNavigator(
   },
   {
     initialRouteName: 'Announce',
-  },
+  }
 );
 
 const TabIcon = ({ tintColor, focused }) => (
