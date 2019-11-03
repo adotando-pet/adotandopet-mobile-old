@@ -1,14 +1,17 @@
-import { Platform } from 'react-native';
-
 import styled from 'styled-components/native';
+
+import { Platform } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import LinearGradient from 'react-native-linear-gradient';
+
 import { colors, metrics, fonts } from '~/styles';
 
-export const Container = styled.View`
+export const Container = styled(LinearGradient).attrs({
+  colors: [colors.secundary, colors.primary],
+})`
   flex: 1;
-  background-color: ${colors.primary};
 `;
 
 export const CardButton = styled.TouchableOpacity``;
