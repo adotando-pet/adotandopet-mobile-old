@@ -2,7 +2,7 @@ import { call, put, select } from 'redux-saga/effects';
 
 import { AsyncStorage } from 'react-native';
 
-import Toast from 'react-native-toast-native';
+import Toast from 'react-native-simple-toast';
 
 import api from '~/services/api';
 import { navigate } from '~/services/navigation';
@@ -30,10 +30,15 @@ export function* signUpRequest({ data }) {
     navigate('Announce');
   } catch (err) {
     yield put(AuthActions.failure());
-    Toast.show('Houve um erro no seu Cadastro! \nTente novamente...', Toast.SHORT, Toast.TOP, {
-      ...general.toast,
-      ...general.toastDanger,
-    });
+    Toast.show(
+      'Houve um erro no seu Cadastro! \nTente novamente...',
+      Toast.SHORT,
+      Toast.TOP,
+      {
+        ...general.toast,
+        ...general.toastDanger,
+      },
+    );
   }
 }
 
@@ -41,22 +46,36 @@ export function* signInRequest({ data }) {
   try {
     const response = yield call(api.post, '/sessions', data);
 
-    Toast.show(`Seja Bem-Vindo(a) ${response.data.data.name}!`, Toast.SHORT, Toast.TOP, {
-      ...general.toast,
-      ...general.toastSuccess,
-    });
+    // Toast.show(
+    //   `Seja Bem-Vindo(a) ${response.data.data.name}!`,
+    //   Toast.SHORT,
+    //   Toast.TOP,
+    //   {
+    //     ...general.toast,
+    //     ...general.toastSuccess,
+    //   },
+    // );
 
-    yield call(AsyncStorage.setItem, '@AdotandoPet:token', response.data.token.token);
+    yield call(
+      AsyncStorage.setItem,
+      '@AdotandoPet:token',
+      response.data.token.token,
+    );
 
     yield put(AuthActions.signinSuccess(response.data));
 
     navigate('Announce');
   } catch (err) {
     yield put(AuthActions.failure());
-    Toast.show('Houve um erro no Login! \nTente novamente...', Toast.SHORT, Toast.TOP, {
-      ...general.toast,
-      ...general.toastDanger,
-    });
+    Toast.show(
+      'Houve um erro no Login! \nTente novamente...',
+      Toast.SHORT,
+      Toast.TOP,
+      {
+        ...general.toast,
+        ...general.toastDanger,
+      },
+    );
   }
 }
 
@@ -67,10 +86,15 @@ export function* forgotPasswordRequest({ data }) {
       redirect_url: 'https://urltemporaria.com.br/resetar-senha',
     });
 
-    Toast.show(`Foram enviadas instruções para o email \n${data.email}!`, Toast.SHORT, Toast.TOP, {
-      ...general.toast,
-      ...general.toastSuccess,
-    });
+    Toast.show(
+      `Foram enviadas instruções para o email \n${data.email}!`,
+      Toast.SHORT,
+      Toast.TOP,
+      {
+        ...general.toast,
+        ...general.toastSuccess,
+      },
+    );
 
     // navigate('Announce');
   } catch (err) {
@@ -94,16 +118,26 @@ export function* authCheck({ routeName }) {
     if (auth.token) {
       navigate(routeName);
     } else {
-      Toast.show('Você precisa fazer Login para acessar essa página!', Toast.SHORT, Toast.TOP, {
-        ...general.toast,
-        ...general.toastDanger,
-      });
+      Toast.show(
+        'Você precisa fazer Login para acessar essa página!',
+        Toast.SHORT,
+        Toast.TOP,
+        {
+          ...general.toast,
+          ...general.toastDanger,
+        },
+      );
     }
   } catch (err) {
     yield put(AuthActions.failure());
-    Toast.show('Houve ao tentar verificar seu Login. Tente novamente...', Toast.SHORT, Toast.TOP, {
-      ...general.toast,
-      ...general.toastDanger,
-    });
+    Toast.show(
+      'Houve ao tentar verificar seu Login. Tente novamente...',
+      Toast.SHORT,
+      Toast.TOP,
+      {
+        ...general.toast,
+        ...general.toastDanger,
+      },
+    );
   }
 }

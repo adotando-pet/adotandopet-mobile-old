@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 
-import Toast from 'react-native-toast-native';
+import Toast from 'react-native-simple-toast';
 
 import api from '~/services/api';
 import { navigate } from '~/services/navigation';
@@ -32,10 +32,15 @@ export function* registerAdvertisementRequest({ data }) {
   try {
     const response = yield call(api.post, '/advertisements', data);
 
-    Toast.show('O anúncio foi cadastrado com sucesso!', Toast.SHORT, Toast.TOP, {
-      ...general.toast,
-      ...general.toastSuccess,
-    });
+    Toast.show(
+      'O anúncio foi cadastrado com sucesso!',
+      Toast.SHORT,
+      Toast.TOP,
+      {
+        ...general.toast,
+        ...general.toastSuccess,
+      },
+    );
 
     yield put(AdvertisementActions.registerAdvertisementSuccess(response.data));
 

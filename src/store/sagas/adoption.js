@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 
-import Toast from 'react-native-toast-native';
+import Toast from 'react-native-simple-toast';
 
 import api from '~/services/api';
 import { goBack } from '~/services/navigation';
@@ -18,7 +18,7 @@ export function* getAdoptionRequest() {
     yield put(AdoptionActions.getAdoptionFailure());
     Toast.show(
       'Houve um erro ao recuperar suas adoções! \nTente novamente...',
-      Toast.SHORT,
+      Toast.LONG,
       Toast.TOP,
       {
         ...general.toast,
@@ -32,7 +32,7 @@ export function* registerAdoptionRequest({ data }) {
   try {
     yield call(api.post, `/adoptions/${data.id}`);
 
-    Toast.show('Interesse registrado!', Toast.SHORT, Toast.TOP, {
+    Toast.show('Interesse registrado!', Toast.LONG, Toast.TOP, {
       ...general.toast,
       ...general.toastSuccess,
     });
@@ -44,7 +44,7 @@ export function* registerAdoptionRequest({ data }) {
     yield put(AdoptionActions.registerAdoptionFailure());
     Toast.show(
       'Houve um erro ao registrar seu pedido de adoção! \nTente novamente...',
-      Toast.SHORT,
+      Toast.LONG,
       Toast.TOP,
       {
         ...general.toast,
