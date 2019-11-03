@@ -10,12 +10,17 @@ import { colors, metrics, fonts } from '~/styles';
 
 export const Container = styled.View`
   align-self: stretch;
-  padding: ${metrics.basePadding}px;
+  padding: ${Platform.OS === 'ios'
+    ? metrics.basePadding
+    : metrics.baseMargin - 5}px
+    ${metrics.basePadding}px;
   background-color: ${colors.mediumWhiteTransparent};
-  margin: ${getStatusBarHeight()}px ${metrics.baseMargin}px ${metrics.baseMargin}px
-    ${metrics.baseMargin}px;
+  margin: ${getStatusBarHeight()}px ${metrics.baseMargin}px
+    ${metrics.baseMargin}px ${metrics.baseMargin}px;
   border-radius: ${metrics.baseRadius};
   flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 `;
 
 export const Input = styled.TextInput.attrs({
